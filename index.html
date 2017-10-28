@@ -29,11 +29,22 @@
                     <h1 class="header center orange-text">Hungry?</h1>
                 </div>
             </div>
-            <!-- Row for search items -->
-            <div class="row" id="searchFields">
+
+            <!-- Row for search buttons -->
+            <div class="row center" id="searchBtns">
+                <a class="btn waves-effect waves-light" id="restaurantName">Restaurant Name</a>
+                <a class="btn waves-effect waves-light" id="cuisineType">Cuisine Type</a>
+                <a class="btn waves-effect waves-light" id="zipCode">Zip Code</a>
+                <br>
             </div>
+            <!-- Row for search fields, dynamically generated -->
+            <div class="row center" id="searchFields">
+
+            </div>
+
+        <!-- Do not include content below this div! End of container! -->    
         </div> 
-        <!-- Do not include content below the above div! End of container! -->
+        
         <!-- Firebase -->
         <script src="https://www.gstatic.com/firebasejs/4.6.0/firebase.js"></script>
         <!--Import jQuery before materialize.js-->
@@ -41,6 +52,6 @@
         <!-- Compiled and minified JavaScript -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
         <!-- Link JS -->
-        <script src="assets/js/app.js"></script>
+        <script src="assets/javascript/app.js"></script>
     </body>
 </html>
