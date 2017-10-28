@@ -8,42 +8,43 @@ $(document).ready(function(){
         $("#resultsDiv").hide();
     }
 
-defaultPage();
+    defaultPage();
 
 
-$("#searchBtns").on("click", function(event){
-    // console.log(event.target.id);
-    if (event.target.id === "restaurantName"){
+    $("#searchBtns").on("click", function(event){
+        // console.log(event.target.id);
+        if (event.target.id === "restaurantName"){
 
-        $(".rest-search-field").show();
-        $(".cuisine-search-field").hide();
+            $(".rest-search-field").show();
+            $(".cuisine-search-field").hide();
 
-    } else {
-        $(".cuisine-search-field").show();
-        $(".rest-search-field").hide();
-    }
+        } else {
+            $(".cuisine-search-field").show();
+            $(".rest-search-field").hide();
+        }
 
-});
+    });
 
-$("#submitBtn").on("click", function() {
-    // body...'
-    // console.log("I clicked on the submit button");
-    var restaurantName = $("#rest-search-input").val();
-    console.log(restaurantName);
-    var cuisineName = $("#cuisine-search-input").val();
-    console.log(cuisineName);
-    var zipName = $("#zip-search-input").val();
-    var isValidZip = /(^\d{5}$)|(^\d{5}-\d{4}$)/.test(zipName);
-    console.log(isValidZip);
+    $("#submitBtn").on("click", function() {
+        // body...'
+        // console.log("I clicked on the submit button");
+        var restaurantName = $("#rest-search-input").val();
+        console.log(restaurantName);
+        var cuisineName = $("#cuisine-search-input").val();
+        console.log(cuisineName);
+        var zipName = $("#zip-search-input").val();
+        var isValidZip = /(^\d{5}$)|(^\d{5}-\d{4}$)/.test(zipName);
+        console.log(isValidZip);
 
-    if (!isValidZip) {
-        console.log("Valid zip must be five digits long, stupid!");
+        if (!isValidZip) {
+            console.log("Valid zip must be five digits long, stupid!");
 
-    }
-    console.log(zipName);
-    // I
-   $('.modal').modal();
+        }
+        console.log(zipName);
+        // I
+    $('.modal').modal();
 
+    });
 });
 
     // $("#restaurantName").on("click", function(){
@@ -155,7 +156,7 @@ $("#submitBtn").on("click", function() {
         //     });
         // };
 
-});
+
 
 //  $where=inspection_date between '2015-01-10T12:00:00' and '2017-01-14T14:00:00' and starts_with(dba_name, upper('jimmy johns')) and zip='60660'
     // $("#zipCode").on("click", function(){
