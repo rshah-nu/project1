@@ -1,246 +1,131 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<title>Restaurant App</title>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Document</title>
+        <!--Import Google Icon Font-->
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <!-- Compiled and minified materialize.CSS -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+        <!-- Import Custom CSS -->
+        <link rel="stylesheet" href="assets/css/style.css">
+    </head>
+    <body>
+        <!-- Navbar -->
+        <nav>
+            <div class="nav-wrapper blue">
+                <a href="#!" class="brand-logo center">Clean Eat Chicago</a>
+            </div>
+        </nav>
+        <!-- Everything inside this container -->
+        <div class="container">
+            <!-- Line breaks for spacing -->
+            <br>
+            <!-- Row 1, Header -->
+            <div class="row">
+                <div class="col s12">
+                    <h1 class="header center orange-text">Hungry?</h1>
+                </div>
+            </div>
 
-	<!-- Import Bootstrap -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+            <!-- Row for search buttons -->
+            <div class="row center" id="searchBtns">
+                <a class="btn waves-effect waves-light" id="restaurantName">Restaurant Name</a>
+                <a class="btn waves-effect waves-light" id="cuisineType">Cuisine Type</a>
+                <br>
+            </div>
+            <!-- Row for search fields, hard coded generated -->
+            <div class="row center">
+                <form class="col s12">
 
-	<!-- Compiled and minified Materialize CSS -->
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+                    <div class="input-field col s6 rest-search-field">
+                        <i class="material-icons prefix">restaurant</i>
+                        <input class="icon_prefix" id= "rest-search-input" type="text" class="validate">
+                        <label for="icon_prefix">Restaurant</label>
+                    </div>
 
+                    <div class="input-field col s6 cuisine-search-field">
+                        <i class="material-icons prefix">restaurant_menu</i>
+                        <input class="icon_prefix" id="cuisine-search-input" type="text" class="validate">
+                        <label for="icon_telephone">Cuisine</label>
+                    </div>
 
-	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+                    <div class="input-field col s6 zip-search-field">
+                        <i class="material-icons prefix">search</i>
+                        <input class="icon_prefix" id="zip-search-input" type="number" class="validate">
+                        <label for="icon_prefix">Zip</label>
+                    </div>
 
-	<!-- Import Custom CSS -->
-	<link rel="stylesheet" href="assets/css/style.css">
+                </form>
+            </div>
+            <!-- Row for Submit Button, Ofsetted for layout -->
+            <div class="row right-align">
+                <a class="waves-effect waves-light btn modal-trigger" href="#modal1" type="submit" id="submitBtn">Submit
+                <i class="material-icons right">send</i>
+                </a>
+            </div>
 
-</head>
+             <div id="modal1" class="modal modal-fixed-footer">
+                <div class="modal-content">
+                <h4>Modal</h4>
+                <p>You need to enter an input</p>
+                </div>
 
-<body>
+            </div>
 
-<nav class="light-blue lighten-1" role="navigation">
-  <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo center">Clean Eat Chicago</a>
-    <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
-  </div>
-</nav>
+            <!-- Row for Results -->
+            <div id="resultsDiv" class="row">
+                <div class="col s12">
+                    <ul class="collapsible" data-collapsible="accordion">
+                        <li>
+                            <div class="collapsible-header">
+                                <i class="material-icons">sentiment_very_dissatisfied</i>Pass
+                            </div>
 
-<div class="section no-pad-bot" id="index-banner">
+                            <div class="collapsible-body">
+                                <table class="striped">
+                                    <thead>
+                                        <tr>
+                                            <th>Inspection Date</th>
+                                            <th>Violations</th>
+                                            <th>Results</th>
+                                        </tr>
+                                    </thead>
+                                </table>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="collapsible-header">
+                                <i class="material-icons">sentiment_dissatisfied</i>Fail
+                            </div>
+                            <div class="collapsible-body">
+                                <table class="striped">
+                                    <thead>
+                                        <tr>
+                                            <th>Inspection Date</th>
+                                            <th>Results</th>
+                                            <th>Violations</th>
+                                        </tr>
+                                    </thead>
+                                </table>
+                            </div>
+                        </li>
 
-    <div class="container">
-      <br><br>
-      <h1 class="header center orange-text">Hungry?</h1>
-
-    	<div class="row center">
-				<form class="col s12">
-
-					<div class="input-field col s4">
-						<i class="material-icons prefix">restaurant</i>
-						<input id="icon_prefix" type="text" class="validate">
-						<label for="icon_prefix">Restaurant</label>
-					</div>
-
-					<div class="input-field col s4">
-						<i class="material-icons prefix">zip</i>
-						<input id="icon_prefix" type="text" class="validate">
-						<label for="icon_prefix">Zip</label>
-					</div>
-
-					<div class="input-field col s4">
-						<i class="material-icons prefix">restaurant_menu</i>
-						<input id="icon_telephone" type="tel" class="validate">
-						<label for="icon_telephone">Cuisine</label>
-					</div>
-
-				</form>
-
-      <!-- End row-->
-			</div>
-
-    <!-- End container -->
-		</div>
-
-<!-- End section -->
-</div>
-
-  <div class="container">
-    <div class="section">
-
-      <!--   Icon Section   -->
-      <div class="row">
-        <div class="col s12 m4">
-          <div class="icon-block">
-            <h2 class="center light-blue-text"><i class="material-icons">yep</i></h2>
-            <h5 class="center">One of the tables goes here</h5>
-
-            <p class="light">The data goes here</p>
-          </div>
+                    </ul>
+                </div>
+            </div>
+        <!-- Do not include content below this div! End of container! -->
         </div>
 
-        <div class="col s12 m4">
-          <div class="icon-block">
-            <h2 class="center light-blue-text"><i class="material-icons">yep</i></h2>
-            <h5 class="center">One of the tables goes here</h5>
-
-            <p class="light">The data goes here</p>
-          </div>
-        </div>
-
-        <div class="col s12 m4">
-          <div class="icon-block">
-            <h2 class="center light-blue-text"><i class="material-icons">yep</i></h2>
-            <h5 class="center">One of the tables goes here</h5>
-
-            <p class="light">The data goes here</p>
-          </div>
-        </div>
-
-      <!-- End row -->
-      </div>
-
-    <!-- End section -->
-    </div>
-
-    <br><br>
-
-  <!-- End container -->
-  </div>
-
-<footer class="page-footer orange">
-
-  <div class="footer-copyright">
-    <div class="container">
-    Created by <a class="orange-text text-lighten-3" href="http://materializecss.com">Children Of The Node </a>
-    </div>
-  </div>
-
-</footer>
-
-
-
-<!-- Jumbotron -->
-<!-- <div class="jumbotron">
-
-	<div class="card bg-dark text-white">
-		<div class="card-img " src="assets/images/th.jpg" alt="Card image">
-		  <div class="card-img-overlay">
-			<h1 class="text-center">Restaurant App!</h1>
-			<div class="valign-wrapper">
-				<h5>This should be vertically aligned</h5>
-			</div>
-
-			<div class="row">
-				<form class="col s12">
-					<div class="row">
-					<div class="input-field col s6">
-						<i class="material-icons prefix">restaurant</i>
-						<input id="icon_prefix" type="text" class="validate">
-						<label for="icon_prefix">Restaurant</label>
-					</div>
-						<div class="input-field col s6">
-
-							<form name="myForm" action="/action_page.php"
-							onsubmit="return validateForm()" method="post">
-							Zip Code <input type="text" name="fname">
-
-							</form>
-
-						</div>
-						<div class="input-field col s6">
-							<i class="material-icons prefix">restaurant_menu</i>
-							<input id="icon_telephone" type="tel" class="validate">
-							<label for="icon_telephone">Cuisine</label>
-						</div>
-					</div>
-				</form>
-			</div>
-		</div>
-	</div>
-</div> -->
-
-<!-- Page Content goes here -->
-<!-- <ul class="collapsible" data-collapsible="accordion">
-  <li>
-    <div class="collapsible-header">
-      <i class="material-icons">filter_drama</i>
-      First
-      <span class="new badge">4</span></div>
-    <div class="collapsible-body"><p>seveity date detail.</p></div>
-  </li>
-  <li>
-    <div class="collapsible-header">
-      <i class="material-icons">place</i>
-      Second
-      <span class="badge">1</span></div>
-    <div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
-  </li>
-</ul>
-<div class="row">
-	<div class="col s4">This information is derived from inspections of restaurants and other food establishments in Chicago from January 1, 2010 to the present. Inspections are performed by staff from the Chicago Department of Public Health’s Food Protection Program using a standardized procedure. The result of the inspections (pass, pass with conditions or fail) as well as the violations noted are based on the findings identified and reported by the inspector at the time of the inspection, and may not reflect the findings noted at other times. For more information about Food Inspections, go to https://www.cityofchicago.org/city/en/depts/cdph/provdrs/inspections_and_permitting/svcs/food-protection-services.html. </div>
-	<div class="col s4">MAP</div>
-	<div class="col s4">Something</div>
-</div> -->
-
-<!-- <table class="striped">
-	<thead>
-		<tr>
-			<th>DBA Name</th>
-			<th>AKA Name</th>
-			<th>Type</th>
-			<th>Risk</th>
-			<th>Address</th>
-			<th>City</th>
-			<th>Zip</th>
-			<th>Results</th>
-			<th>Violations</th>
-		</tr>
-	</thead>
-
-	<tbody>
-		<tr>
-			<td>Alvin</td>
-			<td>Eclair</td>
-			<td>$0.87</td>
-		</tr>
-		<tr>
-			<td>Alan</td>
-			<td>Jellybean</td>
-			<td>$3.76</td>
-		</tr>
-		<tr>
-			<td>Jonathan</td>
-			<td>Lollipop</td>
-			<td>$7.00</td>
-		</tr>
-		<tr>
-			<td>Jonathan</td>
-			<td>Lollipop</td>
-			<td>$7.00</td>
-		</tr>
-		<tr>
-			<td>Jonathan</td>
-			<td>Lollipop</td>
-			<td>$7.00</td>
-		</tr>
-	</tbody>
-</table>
-
-</div> -->
-
-
-	<!-- Firebase -->
-	<script src="https://www.gstatic.com/firebasejs/4.6.0/firebase.js"></script>
-	<!-- jQuery library -->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-	<!-- Compiled and minified Materialize JavaScript -->
-
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
-	<!-- Link JS -->
-	<script type="text/javascript" src="assets/javascript/app.js"></script>
-</body>
-
+        <!-- Firebase -->
+        <script src="https://www.gstatic.com/firebasejs/4.6.0/firebase.js"></script>
+        <!--Import jQuery before materialize.js-->
+        <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+        <!-- Compiled and minified JavaScript -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+        <!-- Link JS -->
+        <script src="assets/javascript/app.js"></script>
+    </body>
 </html>
-
