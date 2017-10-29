@@ -39,10 +39,11 @@ $(document).ready(function(){
         if (!isValidZip) {
             console.log("Valid zip must be five digits long, stupid!");
 
+        } else {
+            console.log(zipName + " has a valid length");
         }
-        console.log(zipName);
-        // I
-    $('.modal').modal();
+
+
 
     });
 });
