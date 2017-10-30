@@ -4,63 +4,79 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <title>Document</title>
+        <title>Clean Eat Chicago</title>
         <!--Import Google Icon Font-->
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <!-- Compiled and minified materialize.CSS -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+
         <!-- Import Custom CSS -->
         <link rel="stylesheet" href="assets/css/style.css">
+        <link rel="shortcut icon" type="image/png" href="assets/images/favicon.png"/>
     </head>
     <body>
-        <!-- Navbar -->
-        <nav>
-            <div class="nav-wrapper blue">
-                <a href="#!" class="brand-logo center">Clean Eat Chicago</a>
-            </div>
-        </nav>
-        <!-- Everything inside this container -->
-        <div class="container">
-            <!-- Line breaks for spacing -->
+
+    <!-- Navbar -->
+    <nav>
+        <div class="nav-header header-sty">
+            <h1 class="center">Clean Eat Chicago</h1>
+        </div>
+    </nav>
+      <!-- Everything inside this container -->
+      <div class="container main">
+        <!-- Line breaks for spacing -->
+        <br>
+     <!--    <div class="row">
+          <div class="col s12">
+              <h2 class="header center hungry">Hungry?</h2>
+          </div>
+        </div> -->
+
+          <!-- Row for search buttons -->
+        <div class="row center" id="searchBtns">
+            <a class="btn waves-effect waves-light btn-custom" id="restaurantName">Restaurant Name</a>
+            <a class="btn waves-effect waves-light btn-custom" id="cuisineType">Cuisine Type</a>
             <br>
-            <!-- Row 1, Header -->
-            <div class="row">
-                <div class="col s12">
-                    <h1 class="header center orange-text">Hungry?</h1>
-                </div>
+        </div>
+          <!-- Row for search fields, hard coded generated -->
+        <div class="row center">
+          <form class="col s12">
+            <div class="input-field col s6 rest-search-field">
+              <i class="material-icons prefix">restaurant</i>
+              <input class="icon_prefix" id= "rest-search-input" data-error="wrong" data-success="right" type="text" class="validate">
+              <label for="icon_prefix">Restaurant</label>
             </div>
-            <!-- Row for search buttons -->
-            <div class="row center" id="searchBtns">
-                <a class="btn waves-effect waves-light" id="restaurantName">Restaurant Name</a>
-                <a class="btn waves-effect waves-light" id="cuisineType">Cuisine Type</a>
-                <br>
+
+
+            <div class="input-field col s6 cuisine-search-field">
+              <i class="material-icons prefix">restaurant_menu</i>
+              <input class="icon_prefix" id="cuisine-search-input" data-error="wrong" data-success="right" type="text" class="validate">
+              <label for="icon_telephone">Cuisine</label>
             </div>
-            <!-- Row for search fields, hard coded generated -->
-            <div class="row center">
-                <form class="col s12">
-                    <div class="input-field col s6 rest-search-field">
-                        <i class="material-icons prefix">restaurant</i>
-                        <input class="icon_prefix" id= "rest-search-input" type="text" class="validate">
-                        <label for="icon_prefix">Restaurant</label>
-                    </div>
-                    <div class="input-field col s6 cuisine-search-field">
-                        <i class="material-icons prefix">restaurant_menu</i>
-                        <input class="icon_prefix" id="cuisine-search-input" type="text" class="validate">
-                        <label for="icon_telephone">Cuisine</label>
-                    </div>
-                    <div class="input-field col s6 zip-search-field">
-                        <i class="material-icons prefix">search</i>
-                        <input class="icon_prefix" id="zip-search-input" type="number" class="validate">
-                        <label for="icon_prefix">Zip</label>
-                    </div>
-                </form>
+
+            <div class="input-field col s6 zip-search-field">
+              <i class="material-icons prefix">search</i>
+              <input class="icon_prefix" id="zip-search-input" type="number" data-length="5" class="validate" >
+              <label for="icon_prefix">Zip</label>
             </div>
-            <!-- Row for Submit Button, Ofsetted for layout -->
-            <div class="row right-align">
-                <a class="waves-effect waves-light btn modal-trigger" href="#modal1" type="submit" id="submitBtn">Submit
-                <i class="material-icons right">send</i>
-                </a>
-            </div>
+
+
+          </form>
+        </div>
+
+        <!-- Row for Submit Button, Ofsetted for layout -->
+        <div class="row center-align ">
+          <a class="waves-effect waves-light btn btn-custom" href="#modal1" type="submit" id="submitBtn">Submit
+          <i class="material-icons right">send</i>
+          </a>
+        </div>
+
+        <div id="modal1" class="modal modal-fixed-footer">
+          <div class="modal-content">
+          <h4>Please enter a valid 5 digit zip</h4>
+          </div>
+        </div>
+
             <!-- Row for Results -->
             <div id="resultsDiv" class="row">
                 <div class="col s12">
@@ -106,8 +122,21 @@
                     </ul>
                 </div>
             </div>
-        <!-- Do not include content below this div! End of container! -->
+          </div>
+
+      <!-- End of main container! -->
+      </div>
+
+    <footer class="page-footer footer-custom">
+
+      <div class="footer-copyright">
+        <div class="container">
+          Created by <a class="orange-text text-lighten-3" href="http://materializecss.com">Children Of The Node </a>
         </div>
+      </div>
+
+    </footer>
+
 
         <!-- Firebase -->
         <script src="https://www.gstatic.com/firebasejs/4.6.0/firebase.js"></script>

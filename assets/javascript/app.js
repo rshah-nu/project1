@@ -1,6 +1,7 @@
 $(document).ready(function(){
     $("#cuisineType").on("click", function(){
         defaultPage();
+
     });
 
     function defaultPage(){
@@ -37,15 +38,16 @@ $(document).ready(function(){
         var isValidZip = /(^\d{5}$)/.test(zipName);
         console.log(isValidZip);
 
-        if (!isValidZip) {
-            console.log("Valid zip must be five digits long, stupid!");
 
-        }
+        if (!isValidZip) {
+            // console.log("Valid zip must be five digits long, stupid!");
+            //call the toast function for an unobtrusive message
+            Materialize.toast('Please enter a valid five digit zip!', 4000)
+
         else{
             console.log(zipName);
             chicagoCall(restaurantName, zipName);
         }
-        
     });
 
     function chicagoCall(restaurantName, zipName){
