@@ -29,7 +29,6 @@
                     <h1 class="header center orange-text">Hungry?</h1>
                 </div>
             </div>
-
             <!-- Row for search buttons -->
             <div class="row center" id="searchBtns">
                 <a class="btn waves-effect waves-light" id="restaurantName">Restaurant Name</a>
@@ -39,25 +38,21 @@
             <!-- Row for search fields, hard coded generated -->
             <div class="row center">
                 <form class="col s12">
-
                     <div class="input-field col s6 rest-search-field">
                         <i class="material-icons prefix">restaurant</i>
                         <input class="icon_prefix" id= "rest-search-input" type="text" class="validate">
                         <label for="icon_prefix">Restaurant</label>
                     </div>
-
                     <div class="input-field col s6 cuisine-search-field">
                         <i class="material-icons prefix">restaurant_menu</i>
                         <input class="icon_prefix" id="cuisine-search-input" type="text" class="validate">
                         <label for="icon_telephone">Cuisine</label>
                     </div>
-
                     <div class="input-field col s6 zip-search-field">
                         <i class="material-icons prefix">search</i>
                         <input class="icon_prefix" id="zip-search-input" type="number" class="validate">
                         <label for="icon_prefix">Zip</label>
                     </div>
-
                 </form>
             </div>
             <!-- Row for Submit Button, Ofsetted for layout -->
@@ -66,39 +61,32 @@
                 <i class="material-icons right">send</i>
                 </a>
             </div>
-
-             <div id="modal1" class="modal modal-fixed-footer">
-                <div class="modal-content">
-                <h4>Modal</h4>
-                <p>You need to enter an input</p>
-                </div>
-
-            </div>
-
             <!-- Row for Results -->
             <div id="resultsDiv" class="row">
                 <div class="col s12">
                     <ul class="collapsible" data-collapsible="accordion">
                         <li>
                             <div class="collapsible-header">
-                                <i class="material-icons">sentiment_very_dissatisfied</i>Pass
+                                <i class="material-icons">sentiment_very_satisfied</i>Passed Inspections
                             </div>
-
                             <div class="collapsible-body">
                                 <table class="striped">
                                     <thead>
                                         <tr>
                                             <th>Inspection Date</th>
-                                            <th>Violations</th>
                                             <th>Results</th>
+                                            <th>Inspection Type</th>
+                                            <th>Violation</th>
                                         </tr>
                                     </thead>
+                                    <tbody id="passTableBody">
+                                    </tbody>
                                 </table>
                             </div>
                         </li>
                         <li>
                             <div class="collapsible-header">
-                                <i class="material-icons">sentiment_dissatisfied</i>Fail
+                                <i class="material-icons">sentiment_dissatisfied</i>Failed Inspections
                             </div>
                             <div class="collapsible-body">
                                 <table class="striped">
@@ -106,13 +94,15 @@
                                         <tr>
                                             <th>Inspection Date</th>
                                             <th>Results</th>
-                                            <th>Violations</th>
+                                            <th>Inspection Type</th>
+                                            <th>Violation</th>
                                         </tr>
                                     </thead>
+                                    <tbody id="failTableBody">
+                                    </tbody>
                                 </table>
                             </div>
                         </li>
-
                     </ul>
                 </div>
             </div>
