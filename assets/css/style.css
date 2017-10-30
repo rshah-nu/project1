@@ -1,12 +1,24 @@
+
+/*styles for sticky footer*/
+
+body {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+main {
+  flex: 1 0 auto;
+}
+
 h1 {
-margin-top: 10px;
-font-size: 3em;
+  margin-top: 10px;
+  font-size: 3em;
 }
 
 .header-sty {
   padding:2px;
   background: url(../images/ChicagoFlag.png) center no-repeat;
-
 }
 
 nav {
@@ -29,27 +41,64 @@ nav {
 }
 
 .btn-custom {
-  background-color:#0099ff
+  background-color:#0099ff;
 }
 
 .btn-custom:hover {
-  background-color:#52b0f9
+  background-color:#52b0f9;
 }
 
+/* styles the underline when clicked in the input field */
+input:not([type]):focus:not([readonly]),
+input[type=text]:not(.browser-default):focus:not([readonly]),
+input[type=number]:not(.browser-default):focus:not([readonly]),
+input[type=search]:not(.browser-default):focus:not([readonly]) {
+  border-bottom: 1px solid #52b0f9;
+  box-shadow: 0 1px 0 0 #52b0f9; }
+
+/* styles the label when clicked in the input field */
+input:not([type]):focus:not([readonly]) + label,
+input[type=text]:not(.browser-default):focus:not([readonly]) + label,
+input[type=number]:not(.browser-default):focus:not([readonly]) + label,
+input[type=search]:not(.browser-default):focus:not([readonly]) + label{
+  color: #52b0f9; }
+
+.input-field input[type=number].invalid {
+  color: red;
+}
+
+.input-field .prefix {
+  color: grey;
+}
+.input-field .prefix.active {
+  color:#52b0f9;
+}
 
 footer {
-  margin-top: 150px;
+  margin-top: 100px;
 }
 
 .footer-custom {
   background-color: #ff960c;
   height: 200px;
   text-align: center;
-  padding-top: 40px;
-
+  padding: 50px;
 }
 
 .page-footer .footer-copyright {
   background-color: #ff960c;
+}
+
+@media only screen and (max-width: 500px) {
+
+.footer-custom {
+  margin-top: 40px;
+  height: 280px;
+}
+
+.main {
+  margin-top:40px;
+}
+
 
 }

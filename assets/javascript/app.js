@@ -1,6 +1,7 @@
 $(document).ready(function(){
     $("#cuisineType").on("click", function(){
         defaultPage();
+
     });
 
     function defaultPage(){
@@ -34,13 +35,16 @@ $(document).ready(function(){
         console.log(cuisineName);
         var zipName = $("#zip-search-input").val();
         var isValidZip = /(^\d{5}$)|(^\d{5}-\d{4}$)/.test(zipName);
-        console.log(isValidZip);
+        console.log(zipName);
 
         if (!isValidZip) {
-            console.log("Valid zip must be five digits long, stupid!");
+            // console.log("Valid zip must be five digits long, stupid!");
+            //call the toast function for an unobtrusive message
+            Materialize.toast('Please enter a valid five digit zip!', 4000)
 
         } else {
             console.log(zipName + " has a valid length");
+            // run the function with the api call
         }
 
 
