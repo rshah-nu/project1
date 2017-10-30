@@ -47,6 +47,7 @@
               <label for="icon_prefix">Restaurant</label>
             </div>
 
+
             <div class="input-field col s6 cuisine-search-field">
               <i class="material-icons prefix">restaurant_menu</i>
               <input class="icon_prefix" id="cuisine-search-input" data-error="wrong" data-success="right" type="text" class="validate">
@@ -58,6 +59,7 @@
               <input class="icon_prefix" id="zip-search-input" type="number" data-length="5" class="validate" >
               <label for="icon_prefix">Zip</label>
             </div>
+
 
           </form>
         </div>
@@ -75,46 +77,50 @@
           </div>
         </div>
 
-          <!-- Row for Results -->
-          <div id="resultsDiv" class="row">
-            <div class="col s12">
-              <ul class="collapsible" data-collapsible="accordion">
-                <li>
-                  <div class="collapsible-header">
-                    <i class="material-icons">sentiment_very_dissatisfied</i>Pass
-                  </div>
-
-                  <div class="collapsible-body">
-                    <table class="striped">
-                      <thead>
-                        <tr>
-                          <th>Inspection Date</th>
-                          <th>Violations</th>
-                          <th>Results</th>
-                        </tr>
-                      </thead>
-                    </table>
-                  </div>
-                </li>
-
-                <li>
-                  <div class="collapsible-header">
-                    <i class="material-icons">sentiment_dissatisfied</i>Fail
-                  </div>
-                  <div class="collapsible-body">
-                    <table class="striped">
-                      <thead>
-                        <tr>
-                          <th>Inspection Date</th>
-                          <th>Results</th>
-                          <th>Violations</th>
-                        </tr>
-                      </thead>
-                    </table>
-                  </div>
-                </li>
-
-              </ul>
+            <!-- Row for Results -->
+            <div id="resultsDiv" class="row">
+                <div class="col s12">
+                    <ul class="collapsible" data-collapsible="accordion">
+                        <li>
+                            <div class="collapsible-header">
+                                <i class="material-icons">sentiment_very_satisfied</i>Passed Inspections
+                            </div>
+                            <div class="collapsible-body">
+                                <table class="striped">
+                                    <thead>
+                                        <tr>
+                                            <th>Inspection Date</th>
+                                            <th>Results</th>
+                                            <th>Inspection Type</th>
+                                            <th>Violation</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="passTableBody">
+                                    </tbody>
+                                </table>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="collapsible-header">
+                                <i class="material-icons">sentiment_dissatisfied</i>Failed Inspections
+                            </div>
+                            <div class="collapsible-body">
+                                <table class="striped">
+                                    <thead>
+                                        <tr>
+                                            <th>Inspection Date</th>
+                                            <th>Results</th>
+                                            <th>Inspection Type</th>
+                                            <th>Violation</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="failTableBody">
+                                    </tbody>
+                                </table>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
             </div>
           </div>
 
