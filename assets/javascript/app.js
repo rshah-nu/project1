@@ -33,10 +33,11 @@ $(document).ready(function(){
         var queryURL = "?$where=inspection_date between '2012-01-10T12:00:00' and '2017-01-14T14:00:00' and starts_with(dba_name, upper('" + restaurantName + "')) and zip='" + zipName + "'";
         var fullURL = baseURL + queryURL;
         $.getJSON(fullURL, function(r){
+            testFunction(r);
             var pass = 0;
             var fail = 0;
             for (var i = 0; i < r.length; i++) {
-                var result = r[i].results;
+                var result = r[i].results
                 switch (result) {
                     case "Pass":
                         pass++;
@@ -73,9 +74,37 @@ $(document).ready(function(){
                         break;
                 };
             };
-            console.log(pass);
             $("#totalPass").text(pass);
             $("#totalFail").text(fail);
         });
     };
+
+    function testFunction(r){
+        var uniqueLocations = [];
+        var uniqueInfo = []
+        for (var i = 0; i < r.length; i++){
+            if (uniqueLocations.includes(r[i].address)) {
+                console.log("I already contain that address!");
+            }
+            else{
+                uniqueLocations.push(r[i].address);
+                uniqueInfo.push([r[i].dba_name, r[i].location.coordinates[1], r[i].location.coordinates[0]]);
+            };
+        };
+        initMap(uniqueInfo);
+    };
 });
+function initMap(uniqueInfo) {
+
+    var centerMap = {lat: uniqueInfo[0][1], lng: uniqueInfo[0][2]};
+    var map = new google.maps.Map(document.getElementById('map'), {
+      zoom: 14,
+      center: centerMap
+    });
+    for (var i = 0; i < uniqueInfo.length; i++){
+        var marker = new google.maps.Marker({
+        position: {lat: uniqueInfo[i][1], lng: uniqueInfo[i][2]},
+        map: map
+        });
+    };
+};
