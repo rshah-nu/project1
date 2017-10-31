@@ -73,6 +73,9 @@ $(document).ready(function(){
                         break;
                 };
             };
+            console.log(pass);
+            $("#totalPass").text(pass);
+            $("#totalFail").text(fail);
         });
     };
 });

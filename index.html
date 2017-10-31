@@ -9,7 +9,6 @@
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <!-- Compiled and minified materialize.CSS -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
-
         <!-- Import Custom CSS -->
         <link rel="stylesheet" href="assets/css/style.css">
         <!-- Favicon -->
@@ -72,11 +71,11 @@
                         <ul class="collapsible" data-collapsible="accordion">
                             <li>
                                 <div class="collapsible-header">
-                                    <i class="material-icons">sentiment_very_satisfied</i>Passed Inspections
+                                    <i class="material-icons">sentiment_very_satisfied</i>Passed Inspections<span class="new badge green" id="totalPass" data-badge-caption="Total"></span>
                                 </div>
                                 <div class="collapsible-body">
                                     <table class="striped">
-                                        <thead>
+                                        <thead class="center-align">
                                             <tr>
                                                 <th>Inspection Date</th>
                                                 <th>Results</th>
@@ -91,11 +90,11 @@
                             </li>
                             <li>
                                 <div class="collapsible-header">
-                                    <i class="material-icons">sentiment_dissatisfied</i>Failed Inspections
+                                    <i class="material-icons">sentiment_dissatisfied</i>Failed Inspections<span class="new badge red" id="totalFail" data-badge-caption="Total"></span>
                                 </div>
                                 <div class="collapsible-body">
                                     <table class="striped">
-                                        <thead>
+                                        <thead class="center-align">
                                             <tr>
                                                 <th>Inspection Date</th>
                                                 <th>Results</th>
@@ -121,8 +120,6 @@
         </div>
       </div>
     </footer>
-
-
         <!-- Firebase -->
         <script src="https://www.gstatic.com/firebasejs/4.6.0/firebase.js"></script>
         <!--Import jQuery before materialize.js-->
