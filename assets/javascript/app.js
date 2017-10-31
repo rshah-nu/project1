@@ -25,6 +25,8 @@ $(document).ready(function(){
             Materialize.toast('Please enter a valid five digit zip!', 4000)
         } else {
             chicagoCall(restaurantName, zipName);
+            $("#rest-search-input").val("");
+            $("#cuisine-search-input").val("");
         }
     });
 
@@ -112,4 +114,27 @@ function initMap(uniqueInfo) {
         map: map
         });
     };
+};
+
+function placeID(restaurantName, zipName){
+    var baseURL = 'https://maps.googleapis.com/maps/api/place/textsearch/json?key=AIzaSyBrsAAIlHYMZXY-Zhcj7Z6ZOjvMM8q5v-0&';
+    var queryURL = 'query="panera"+"60610"'
+    var proxyURL = 'https://ghastly-eyeballs-78637.herokuapp.com/'
+    var fullURL = proxyURL + baseURL + queryURL;
+    $.getJSON(fullURL, function(r){
+        reviews(r.results[0].place_id);
+    });
+};
+
+placeID();
+
+function reviews(placeID){
+    var baseURL = 'https://maps.googleapis.com/maps/api/place/details/json?key=AIzaSyBrsAAIlHYMZXY-Zhcj7Z6ZOjvMM8q5v-0&';
+    var queryURL = "placeid=" + placeID;
+    var proxyURL = 'https://ghastly-eyeballs-78637.herokuapp.com/';
+    var fullURL = proxyURL + baseURL + queryURL;
+    console.log(fullURL);
+    $.getJSON(fullURL, function(r){
+        console.log(r);
+    });
 };
