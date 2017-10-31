@@ -4,7 +4,7 @@ $(document).ready(function(){
     });
     function defaultPage(){
         $(".cuisine-search-field").hide();
-        $("#resultsDiv").show();
+        $(".resultsDiv").hide();
     }
     defaultPage();
     $("#searchBtns").on("click", function(event){
@@ -30,7 +30,11 @@ $(document).ready(function(){
 
     function chicagoCall(restaurantName, zipName){
         var baseURL = 'https://data.cityofchicago.org/resource/cwig-ma7x.json';
-        var queryURL = "?$where=inspection_date between '2012-01-10T12:00:00' and '2017-01-14T14:00:00' and starts_with(dba_name, upper('" + restaurantName + "')) and zip='" + zipName + "'";
+        var queryURL =
+        '?$where=inspection_date between "2012-01-10T12:00:00" and "2017-01-14T14:00:00"'
+        + ' and starts_with(dba_name, upper("'
+        + restaurantName
+        + '")) and zip="' + zipName + '"';
         var fullURL = baseURL + queryURL;
         $.getJSON(fullURL, function(r){
             testFunction(r);
@@ -92,6 +96,7 @@ $(document).ready(function(){
             };
         };
         initMap(uniqueInfo);
+        $(".resultsDiv").show();
     };
 });
 function initMap(uniqueInfo) {
