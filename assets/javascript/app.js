@@ -29,7 +29,8 @@ $(document).ready(function(){
         }
 
         if (!isValidZip) {
-            Materialize.toast('Please enter a valid five digit zip!', 4000)
+            Materialize.toast('Please enter a valid five digit zip!', 4000);
+
         }
         else {
             chicagoCall(restaurantName, zipName);
