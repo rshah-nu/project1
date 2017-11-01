@@ -27,7 +27,7 @@ $(document).ready(function(){
             chicagoCall(restaurantName, zipName);
             $("#rest-search-input").val("");
             $("#cuisine-search-input").val("");
-        }
+        };
     });
 
     function chicagoCall(restaurantName, zipName){
