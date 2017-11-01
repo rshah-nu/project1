@@ -16,15 +16,26 @@ $(document).ready(function(){
             $(".rest-search-field").hide();
         }
     });
+
     $("#submitBtn").on("click", function() {
+
         var restaurantName = $("#rest-search-input").val();
         var cuisineName = $("#cuisine-search-input").val();
         var zipName = $("#zip-search-input").val();
         var isValidZip = /(^\d{5}$)/.test(zipName);
+
+        if (restaurantName === "") {
+            Materialize.toast('Please enter a restaurant!', 4000)
+        }
+
         if (!isValidZip) {
             Materialize.toast('Please enter a valid five digit zip!', 4000)
-        } else {
+        }
+        else {
             chicagoCall(restaurantName, zipName);
+            $("#rest-search-input").val("");
+            $("#cuisine-search-input").val("");
+            $("#zip-search-input").val("");
         }
     });
 
@@ -80,6 +91,7 @@ $(document).ready(function(){
             };
             $("#totalPass").text(pass);
             $("#totalFail").text(fail);
+
         });
     };
 
