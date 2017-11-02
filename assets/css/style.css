@@ -14,6 +14,7 @@ main {
 h1 {
   margin-top: 10px;
   font-size: 3em;
+  color: white;
 }
 
 .header-sty {
@@ -21,7 +22,7 @@ h1 {
   background: url(../images/ChicagoFlag.png) center no-repeat;
 }
 
-nav {
+header {
   height: 200px;
   background-color: #52b0f9;
 }
@@ -75,14 +76,14 @@ input[type=search]:not(.browser-default):focus:not([readonly]) + label{
 }
 
 footer {
-  margin-top: 100px;
+ /* margin-top: 100px;*/
+
 }
 
 .footer-custom {
   background-color: #ff960c;
-  height: 200px;
   text-align: center;
-  padding: 50px;
+  /*padding: 50px;*/
 }
 
 .page-footer .footer-copyright {
@@ -93,9 +94,9 @@ footer {
   height: 400px;
   width: 100%;
  }
- 
+
 #placeDetails {
-  height: 448px; 
+  height: 448px;
 }
 
 
