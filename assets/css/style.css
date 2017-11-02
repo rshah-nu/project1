@@ -55,6 +55,7 @@ input:not([type]):focus:not([readonly]),
 input[type=text]:not(.browser-default):focus:not([readonly]),
 input[type=number]:not(.browser-default):focus:not([readonly]),
 input[type=search]:not(.browser-default):focus:not([readonly]),
+input[type=submit]:not(.browser-default):focus:not([readonly])
 
  {
   border-bottom: 1px solid #52b0f9;
@@ -64,10 +65,11 @@ input[type=search]:not(.browser-default):focus:not([readonly]),
 input:not([type]):focus:not([readonly]) + label,
 input[type=text]:not(.browser-default):focus:not([readonly]) + label,
 input[type=number]:not(.browser-default):focus:not([readonly]) + label,
-input[type=search]:not(.browser-default):focus:not([readonly]) + label{
+input[type=search]:not(.browser-default):focus:not([readonly]) + label,
+input[type=submit]:not(.browser-default):focus:not([readonly]) + label {
   color: #52b0f9; }
 
-.input-field input[type=number].invalid {
+.input-field input[type=text].invalid {
   color: red;
 }
 
