@@ -4,7 +4,7 @@ $(document).ready(function(){
     });
     function defaultPage(){
         $(".cuisine-search-field").hide();
-        $(".resultsDiv").hide();
+
     }
     defaultPage();
     $("#searchBtns").on("click", function(event){
@@ -16,20 +16,35 @@ $(document).ready(function(){
             $(".rest-search-field").hide();
         }
     });
+
     $("#submitBtn").on("click", function() {
+
         var restaurantName = $("#rest-search-input").val();
         var cuisineName = $("#cuisine-search-input").val();
         var zipName = $("#zip-search-input").val();
+
         var isValidZip = /(^\d{5}$)/.test(zipName);
-        if (!isValidZip) {
-            Materialize.toast('Please enter a valid five digit zip!', 4000)
-        } else {
-            chicagoCall(restaurantName, zipName);
+
+        if (restaurantName === "") {
+            Materialize.toast('Please enter a restaurant!', 4000)
         }
+
+        if (!isValidZip) {
+            Materialize.toast('Please enter a valid five digit zip!', 4000);
+
+        }
+        else {
+            chicagoCall(restaurantName, zipName);
+            $("#rest-search-input").val("");
+            $("#cuisine-search-input").val("");
+            $("#zip-search-input").val("");
+        }
+
     });
 
     function chicagoCall(restaurantName, zipName){
         var baseURL = 'https://data.cityofchicago.org/resource/cwig-ma7x.json';
+
         var queryURL =
         '?$where=inspection_date between "2012-01-10T12:00:00" and "2017-01-14T14:00:00"'
         + ' and starts_with(dba_name, upper("'
@@ -46,6 +61,7 @@ $(document).ready(function(){
                     case "Pass":
                         pass++;
                         var passTableRow = $("<tr>");
+
                         var tableData1 = $("<td>");
                         var tableData2 = $("<td>");
                         var tableData3 = $("<td>");
@@ -54,8 +70,9 @@ $(document).ready(function(){
                         tableData2.text(r[i].results);
                         tableData3.text(r[i].inspection_type);
                         tableData4.text(r[i].violations);
+
                         var passTableBody = $("#passTableBody");
-                        passTableRow.append(tableData1, tableData2, tableData3, tableData4);
+ passTableRow.append(tableData1, tableData2, tableData3, tableData4);
                         passTableBody.append(passTableRow);
                         break;
                     case "Fail":
@@ -69,7 +86,7 @@ $(document).ready(function(){
                         tableData1.text(r[i].inspection_date);
                         tableData2.text(r[i].results);
                         tableData3.text(r[i].inspection_type);
-                        tableData4.text(r[i].violations);
+
                         failTableRow.append(tableData1, tableData2, tableData3, tableData4);
                         failTableBody.append(failTableRow);
                         break;
@@ -77,9 +94,11 @@ $(document).ready(function(){
                         console.log("There has been an error with this restaurant");
                         break;
                 };
+
             };
             $("#totalPass").text(pass);
             $("#totalFail").text(fail);
+
         });
     };
 
@@ -113,3 +132,36 @@ function initMap(uniqueInfo) {
         });
     };
 };
+
+function placeID(restaurantName, zipName){
+    var baseURL = 'https://maps.googleapis.com/maps/api/place/textsearch/json?key=AIzaSyBrsAAIlHYMZXY-Zhcj7Z6ZOjvMM8q5v-0&';
+    var queryURL = 'query="panera"+"60610"'
+    var proxyURL = 'https://ghastly-eyeballs-78637.herokuapp.com/'
+    var fullURL = proxyURL + baseURL + queryURL;
+    $.getJSON(fullURL, function(r){
+        reviews(r.results[0].place_id);
+    });
+};
+
+placeID();
+
+function reviews(placeID){
+    var baseURL = 'https://maps.googleapis.com/maps/api/place/details/json?key=AIzaSyBrsAAIlHYMZXY-Zhcj7Z6ZOjvMM8q5v-0&';
+    var queryURL = "placeid=" + placeID;
+    var proxyURL = 'https://ghastly-eyeballs-78637.herokuapp.com/';
+    var fullURL = proxyURL + baseURL + queryURL;
+    console.log(fullURL);
+    $.getJSON(fullURL, function(r){
+        console.log(r);
+        $("#name").text(r.result.name);
+        $("#phone").text(r.result.formatted_phone_number)
+        $("#address").text(r.result.formatted_address);
+        for (var i = 0; i < 7; i++){
+            $("#hours" + [i]).text(r.result.opening_hours.weekday_text[i]);
+        };
+
+
+
+    });
+};
+
