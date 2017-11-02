@@ -4,7 +4,7 @@ $(document).ready(function(){
     });
     function defaultPage(){
         $(".cuisine-search-field").hide();
-        $(".resultsDiv").show();
+        $(".resultsDiv").hide();
     }
     defaultPage();
     $("#searchBtns").on("click", function(event){
