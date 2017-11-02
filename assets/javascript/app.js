@@ -57,7 +57,7 @@ $(document).ready(function(){
                         var tableData2 = $("<td>");
                         var tableData3 = $("<td>");
                         var tableData4 = $('<td>');
-                        tableData1.text(r[i].inspection_date);
+                        tableData1.text(moment(r[i].inspection_date).format("MM-DD-YYYY"));
                         tableData2.text(r[i].results);
                         tableData3.text(r[i].inspection_type);
                         tableData4.text(r[i].violations);
@@ -73,7 +73,7 @@ $(document).ready(function(){
                         var tableData2 = $("<td>");
                         var tableData3 = $("<td>");
                         var tableData4 = $('<td>');
-                        tableData1.text(r[i].inspection_date);
+                        tableData1.text(moment(r[i].inspection_date).format("MM-DD-YYYY"));
                         tableData2.text(r[i].results);
                         tableData3.text(r[i].inspection_type);
                         tableData4.text(r[i].violations);
