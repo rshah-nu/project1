@@ -46,18 +46,24 @@ header {
   background-color:#0099ff;
 }
 
+.btn-custom:visited {
+  background-color:#0099ff;
+}
+
 .btn-custom:hover {
   background-color:#52b0f9;
+}
+
+.btn {
+  background-color:#e1bee7 purple lighten-4
 }
 
 /* styles the underline when clicked in the input field */
 input:not([type]):focus:not([readonly]),
 input[type=text]:not(.browser-default):focus:not([readonly]),
 input[type=number]:not(.browser-default):focus:not([readonly]),
-input[type=search]:not(.browser-default):focus:not([readonly]),
-input[type=submit]:not(.browser-default):focus:not([readonly])
-
- {
+input[type=search]:not(.browser-default):focus:not([readonly])
+{
   border-bottom: 1px solid #52b0f9;
   box-shadow: 0 1px 0 0 #52b0f9; }
 
@@ -65,8 +71,7 @@ input[type=submit]:not(.browser-default):focus:not([readonly])
 input:not([type]):focus:not([readonly]) + label,
 input[type=text]:not(.browser-default):focus:not([readonly]) + label,
 input[type=number]:not(.browser-default):focus:not([readonly]) + label,
-input[type=search]:not(.browser-default):focus:not([readonly]) + label,
-input[type=submit]:not(.browser-default):focus:not([readonly]) + label {
+input[type=search]:not(.browser-default):focus:not([readonly]) + label {
   color: #52b0f9; }
 
 .input-field input[type=text].invalid {
