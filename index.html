@@ -28,6 +28,7 @@
       <div class="container main">
           <!-- Line breaks for spacing -->
           <br>
+                     
           <!-- Row for search buttons -->
           <div class="row center" id="searchBtns">
               <a class="btn waves-effect waves-light btn-custom btn tooltipped" id="restaurantName" data-position="bottom"  data-tooltip="Must enter restaurant name">Restaurant Name</a>
@@ -43,7 +44,9 @@
               <label for="icon_prefix">Restaurant</label>
             </div>
 
+
              <!-- <a class="btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="I am a tooltip">Hover me!</a> -->
+
 
             <div class="input-field col s6 cuisine-search-field">
               <i class="material-icons prefix">restaurant_menu</i>
@@ -56,6 +59,7 @@
               <input class="icon_prefix" id="zip-search-input" type="number" data-length="5" class="validate" >
               <label for="icon_prefix">Zip</label>
             </div>
+
           </form>
         </div>
         <!-- Row for Submit Button, Offsetted for layout -->
@@ -65,13 +69,53 @@
           </a>
         </div>
 
-
-
-        <div id="modal1" class="modal modal-fixed-footer">
-          <div class="modal-content">
-          <h4>No results found</h4>
+            <!-- Row for Results -->
+            <div id="resultsDiv" class="row">
+                <div class="col s12">
+                    <ul class="collapsible" data-collapsible="accordion">
+                        <li>
+                            <div class="collapsible-header">
+                                <i class="material-icons">sentiment_very_satisfied</i>Passed Inspections
+                            </div>
+                            <div class="collapsible-body">
+                                <table class="striped">
+                                    <thead>
+                                        <tr>
+                                            <th>Inspection Date</th>
+                                            <th>Results</th>
+                                            <th>Inspection Type</th>
+                                            <th>Violation</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="passTableBody">
+                                    </tbody>
+                                </table>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="collapsible-header">
+                                <i class="material-icons">sentiment_dissatisfied</i>Failed Inspections
+                            </div>
+                            <div class="collapsible-body">
+                                <table class="striped">
+                                    <thead>
+                                        <tr>
+                                            <th>Inspection Date</th>
+                                            <th>Results</th>
+                                            <th>Inspection Type</th>
+                                            <th>Violation</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="failTableBody">
+                                    </tbody>
+                                </table>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
           </div>
-        </div>
+
 
              <!-- Row for Results -->
              <div class="row resultsDiv">
