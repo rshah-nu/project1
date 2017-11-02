@@ -94,6 +94,10 @@ footer {
   width: 100%;
  }
  
+#placeDetails {
+  height: 448px; 
+}
+
 @media only screen and (max-width: 500px) {
 
 .footer-custom {
