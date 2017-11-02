@@ -5,17 +5,19 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <title>Clean Eat Chicago</title>
-        <!--Import Google Icon Font-->
+        <!--Import Google Icon Font Library-->
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <!-- Compiled and minified materialize.CSS -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
-
         <!-- Import Custom CSS -->
         <link rel="stylesheet" href="assets/css/style.css">
+        <!-- Favicon -->
         <link rel="shortcut icon" type="image/png" href="assets/images/favicon.png"/>
+        <style>
+
+        </style>
     </head>
     <body>
-
     <!-- Navbar -->
     <nav>
         <div class="nav-header header-sty">
@@ -24,20 +26,15 @@
     </nav>
       <!-- Everything inside this container -->
       <div class="container main">
-        <!-- Line breaks for spacing -->
-        <br>
-     <!--    <div class="row">
-          <div class="col s12">
-              <h2 class="header center hungry">Hungry?</h2>
-          </div>
-        </div> -->
-
+          <!-- Line breaks for spacing -->
+          <br>
+                     
           <!-- Row for search buttons -->
-        <div class="row center" id="searchBtns">
-            <a class="btn waves-effect waves-light btn-custom" id="restaurantName">Restaurant Name</a>
-            <a class="btn waves-effect waves-light btn-custom" id="cuisineType">Cuisine Type</a>
-            <br>
-        </div>
+          <div class="row center" id="searchBtns">
+              <a class="btn waves-effect waves-light btn-custom" id="restaurantName">Restaurant Name</a>
+              <a class="btn waves-effect waves-light btn-custom" id="cuisineType">Cuisine Type</a>
+              <br>
+          </div>
           <!-- Row for search fields, hard coded generated -->
         <div class="row center">
           <form class="col s12">
@@ -60,16 +57,15 @@
               <label for="icon_prefix">Zip</label>
             </div>
 
-
           </form>
         </div>
-
-        <!-- Row for Submit Button, Ofsetted for layout -->
+        <!-- Row for Submit Button, Offsetted for layout -->
         <div class="row center-align ">
-          <a class="waves-effect waves-light btn btn-custom" href="#modal1" type="submit" id="submitBtn">Submit
+          <a class="waves-effect waves-light btn btn-custom" href="#!" type="submit" id="submitBtn">Submit
           <i class="material-icons right">send</i>
           </a>
         </div>
+
 
         <div id="modal1" class="modal modal-fixed-footer">
           <div class="modal-content">
@@ -124,20 +120,80 @@
             </div>
           </div>
 
+
+             <!-- Row for Results -->
+             <div class="row resultsDiv">
+                    <div class="col s12">
+                        <ul class="collapsible" data-collapsible="accordion">
+                            <li>
+                                <div class="collapsible-header">
+                                    <i class="material-icons">sentiment_very_satisfied</i>Passed Inspections<span class="new badge green" id="totalPass" data-badge-caption="Total"></span>
+                                </div>
+                                <div class="collapsible-body">
+                                    <table class="striped">
+                                        <thead class="center-align">
+                                            <tr>
+                                                <th>Inspection Date</th>
+                                                <th>Results</th>
+                                                <th>Inspection Type</th>
+                                                <th>Violation</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="passTableBody">
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="collapsible-header">
+                                    <i class="material-icons">sentiment_dissatisfied</i>Failed Inspections<span class="new badge red" id="totalFail" data-badge-caption="Total"></span>
+                                </div>
+                                <div class="collapsible-body">
+                                    <table class="striped">
+                                        <thead class="center-align">
+                                            <tr>
+                                                <th>Inspection Date</th>
+                                                <th>Results</th>
+                                                <th>Inspection Type</th>
+                                                <th>Violation</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="failTableBody">
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="row resultsDiv">
+                    <div class="col s6">
+                        <div class="card">
+                            <div class="card-content">
+                                    <div id="map"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col s6">
+                        <div class="card">
+                            <div class="card-content">
+                            <p>I am a very simple card. I am good at containing small bits of information.
+                                I am convenient because I require little markup to use effectively.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
       <!-- End of main container! -->
       </div>
 
     <footer class="page-footer footer-custom">
-
       <div class="footer-copyright">
         <div class="container">
           Created by <a class="orange-text text-lighten-3" href="http://materializecss.com">Children Of The Node </a>
         </div>
       </div>
-
     </footer>
-
-
         <!-- Firebase -->
         <script src="https://www.gstatic.com/firebasejs/4.6.0/firebase.js"></script>
         <!--Import jQuery before materialize.js-->
@@ -146,5 +202,7 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
         <!-- Link JS -->
         <script src="assets/javascript/app.js"></script>
+        <!-- Google Maps Source -->
+        <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD-IM6uAMOMAOm9LYTnr7qFZJKO595cY08"></script>
     </body>
 </html>

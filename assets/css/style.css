@@ -89,6 +89,11 @@ footer {
   background-color: #ff960c;
 }
 
+#map {
+  height: 400px;
+  width: 100%;
+ }
+ 
 @media only screen and (max-width: 500px) {
 
 .footer-custom {
