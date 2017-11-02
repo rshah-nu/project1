@@ -124,7 +124,14 @@ $(document).ready(function(){
             };
             $(".multipleResults").on("click", function(e){
                 var name = $(this).attr("data-license");
-                console.log(name);
+                for (var i = 0; i < r.length; i++){
+                    if (name == r[i].license_){
+                        console.log(r[i].address);
+                    }
+                    else {
+                        console.log("You fucked up");
+                    }
+                };
             });
         };
     };
