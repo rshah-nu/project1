@@ -44,6 +44,7 @@
               <label for="icon_prefix">Restaurant</label>
             </div>
 
+
             <div class="input-field col s6 cuisine-search-field">
               <i class="material-icons prefix">restaurant_menu</i>
               <input class="icon_prefix" id="cuisine-search-input" data-error="wrong" data-success="right" type="text" class="validate">
@@ -55,6 +56,7 @@
               <input class="icon_prefix" id="zip-search-input" type="number" data-length="5" class="validate" >
               <label for="icon_prefix">Zip</label>
             </div>
+
           </form>
         </div>
         <!-- Row for Submit Button, Offsetted for layout -->
@@ -63,6 +65,60 @@
           <i class="material-icons right">send</i>
           </a>
         </div>
+
+
+        <div id="modal1" class="modal modal-fixed-footer">
+          <div class="modal-content">
+          <h4>Please enter a valid 5 digit zip</h4>
+          </div>
+        </div>
+
+            <!-- Row for Results -->
+            <div id="resultsDiv" class="row">
+                <div class="col s12">
+                    <ul class="collapsible" data-collapsible="accordion">
+                        <li>
+                            <div class="collapsible-header">
+                                <i class="material-icons">sentiment_very_satisfied</i>Passed Inspections
+                            </div>
+                            <div class="collapsible-body">
+                                <table class="striped">
+                                    <thead>
+                                        <tr>
+                                            <th>Inspection Date</th>
+                                            <th>Results</th>
+                                            <th>Inspection Type</th>
+                                            <th>Violation</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="passTableBody">
+                                    </tbody>
+                                </table>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="collapsible-header">
+                                <i class="material-icons">sentiment_dissatisfied</i>Failed Inspections
+                            </div>
+                            <div class="collapsible-body">
+                                <table class="striped">
+                                    <thead>
+                                        <tr>
+                                            <th>Inspection Date</th>
+                                            <th>Results</th>
+                                            <th>Inspection Type</th>
+                                            <th>Violation</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="failTableBody">
+                                    </tbody>
+                                </table>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+          </div>
 
 
              <!-- Row for Results -->
