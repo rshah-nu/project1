@@ -49,11 +49,7 @@ header {
   font-style: italic;
 }
 
-.hungry {
-  color: #ff960c;
-  font-size: 3em;
-  margin-top: 0px;
-}
+/*searches and buttons*/
 
 .btn-custom {
   background-color:#0099ff;
@@ -93,6 +89,28 @@ input[type=search]:not(.browser-default):focus:not([readonly]) + label{
 .input-field .prefix.active {
   color:#52b0f9;
 }
+
+/*main content results*/
+
+/*info card*/
+.card {
+  background-color: aliceblue;
+}
+#name {
+  text-transform: uppercase;
+}
+
+.tabs .tab a:hover, .tabs .tab a.active {
+  color: #eb4000;
+}
+
+.tabs .tab a {
+  color: #ff7a4a;
+  opacity: 50;
+}
+
+
+
 
 footer {
  /* margin-top: 100px;*/
