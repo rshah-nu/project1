@@ -142,8 +142,14 @@ function reviews(placeID){
         console.log(r);
         $("#address").text(r.result.formatted_address);
         $("#phone").text(r.result.formatted_phone_number);
+        $("#googleRating").text(r.result.rating);
         for (var i = 0; i < r.result.opening_hours.weekday_text.length; i++){
             $("#hours" + i).text(r.result.opening_hours.weekday_text[i]);
+        };
+        for (var i = 0; i < 3; i++){
+            $("#reviewName" + i).text(r.result.reviews[i].author_name);
+            $("#reviewText" + i).text(r.result.reviews[i].text);
+            $("#reviewDate" + i).text(r.result.reviews[i].relative_time_description);
         };
     });
 };
