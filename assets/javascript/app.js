@@ -1,4 +1,5 @@
 $(document).ready(function(){
+    $('.modal').modal();    
     $("#cuisineType").on("click", function(){
         defaultPage();
     });
@@ -94,18 +95,41 @@ $(document).ready(function(){
         var uniqueLocations = [];
         var uniqueInfo = []
         for (var i = 0; i < r.length; i++){
-            if (uniqueLocations.includes(r[i].address)) {
+            if (uniqueLocations.includes(r[i].license_)) {
                 console.log("I already contain that address!");
             }
             else{
-                uniqueLocations.push(r[i].address);
+                uniqueLocations.push(r[i].license_);
                 uniqueInfo.push([r[i].dba_name, r[i].location.coordinates[1], r[i].location.coordinates[0]]);
             };
         };
+        console.log("Unique Locations = " + uniqueLocations);
         initMap(uniqueInfo);
-        $(".resultsDiv").show();
+        if (uniqueLocations.length == 0) {
+            console.log("NO RESULTS FOUND");
+        }
+        else if (uniqueLocations.length == 1){
+            console.log("ONLY LOCATION FOUND");
+        }
+        else{
+            console.log("SO LOCATIONS FOUND!");
+            var collection = $("#multipleLocationsModal");
+            for (var i = 0; i < uniqueLocations.length; i++){
+                var link = $("<a>");
+                link.text(r[i].address);
+                link.addClass("collection-item multipleResults");
+                link.attr("data-license", r[i].license_);
+                collection.append(link);
+                $('#modal1').modal('open');
+            };
+            $(".multipleResults").on("click", function(e){
+                var name = $(this).attr("data-license");
+                console.log(name);
+            });
+        };
     };
 });
+
 function initMap(uniqueInfo) {
 
     var centerMap = {lat: uniqueInfo[0][1], lng: uniqueInfo[0][2]};
