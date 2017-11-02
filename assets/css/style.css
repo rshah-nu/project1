@@ -46,6 +46,10 @@ header {
   background-color:#0099ff;
 }
 
+.btn-custom:visited {
+  background-color:#52b0f9;
+}
+
 .btn-custom:hover {
   background-color:#52b0f9;
 }
@@ -54,9 +58,7 @@ header {
 input:not([type]):focus:not([readonly]),
 input[type=text]:not(.browser-default):focus:not([readonly]),
 input[type=number]:not(.browser-default):focus:not([readonly]),
-input[type=search]:not(.browser-default):focus:not([readonly]),
-
- {
+input[type=search]:not(.browser-default):focus:not([readonly]) {
   border-bottom: 1px solid #52b0f9;
   box-shadow: 0 1px 0 0 #52b0f9; }
 
