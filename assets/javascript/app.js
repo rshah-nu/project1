@@ -28,6 +28,8 @@ $(document).ready(function(){
             Materialize.toast('Please enter a valid five digit zip!', 4000);
         } 
         else {
+            $("#passTableBody").empty();
+            $("#failTableBody").empty();
             chicagoCall(restaurantName, zipName);
             $("#rest-search-input").val("");
             $("#cuisine-search-input").val("");
