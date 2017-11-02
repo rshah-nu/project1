@@ -16,13 +16,29 @@ $(document).ready(function(){
             $(".rest-search-field").hide();
         }
     });
+
     $("#submitBtn").on("click", function() {
+
         var restaurantName = $("#rest-search-input").val();
         var cuisineName = $("#cuisine-search-input").val();
         var zipName = $("#zip-search-input").val();
 
+        var isValidZip = /(^\d{5}$)/.test(zipName);
+
+        if (restaurantName === "") {
+            Materialize.toast('Please enter a restaurant!', 4000)
+        }
+
         if (!isValidZip) {
-            Materialize.toast('Please enter a valid five digit zip!', 4000)
+            Materialize.toast('Please enter a valid five digit zip!', 4000);
+
+        }
+        else {
+            chicagoCall(restaurantName, zipName);
+            $("#rest-search-input").val("");
+            $("#cuisine-search-input").val("");
+            $("#zip-search-input").val("");
+        }
 
     });
 
@@ -78,4 +94,74 @@ $(document).ready(function(){
                         console.log("There has been an error with this restaurant");
                         break;
                 };
+
+            };
+            $("#totalPass").text(pass);
+            $("#totalFail").text(fail);
+
+        });
+    };
+
+    function testFunction(r){
+        var uniqueLocations = [];
+        var uniqueInfo = []
+        for (var i = 0; i < r.length; i++){
+            if (uniqueLocations.includes(r[i].address)) {
+                console.log("I already contain that address!");
+            }
+            else{
+                uniqueLocations.push(r[i].address);
+                uniqueInfo.push([r[i].dba_name, r[i].location.coordinates[1], r[i].location.coordinates[0]]);
+            };
+        };
+        initMap(uniqueInfo);
+        $(".resultsDiv").show();
+    };
+});
+function initMap(uniqueInfo) {
+
+    var centerMap = {lat: uniqueInfo[0][1], lng: uniqueInfo[0][2]};
+    var map = new google.maps.Map(document.getElementById('map'), {
+      zoom: 14,
+      center: centerMap
+    });
+    for (var i = 0; i < uniqueInfo.length; i++){
+        var marker = new google.maps.Marker({
+        position: {lat: uniqueInfo[i][1], lng: uniqueInfo[i][2]},
+        map: map
+        });
+    };
+};
+
+function placeID(restaurantName, zipName){
+    var baseURL = 'https://maps.googleapis.com/maps/api/place/textsearch/json?key=AIzaSyBrsAAIlHYMZXY-Zhcj7Z6ZOjvMM8q5v-0&';
+    var queryURL = 'query="panera"+"60610"'
+    var proxyURL = 'https://ghastly-eyeballs-78637.herokuapp.com/'
+    var fullURL = proxyURL + baseURL + queryURL;
+    $.getJSON(fullURL, function(r){
+        reviews(r.results[0].place_id);
+    });
+};
+
+placeID();
+
+function reviews(placeID){
+    var baseURL = 'https://maps.googleapis.com/maps/api/place/details/json?key=AIzaSyBrsAAIlHYMZXY-Zhcj7Z6ZOjvMM8q5v-0&';
+    var queryURL = "placeid=" + placeID;
+    var proxyURL = 'https://ghastly-eyeballs-78637.herokuapp.com/';
+    var fullURL = proxyURL + baseURL + queryURL;
+    console.log(fullURL);
+    $.getJSON(fullURL, function(r){
+        console.log(r);
+        $("#name").text(r.result.name);
+        $("#phone").text(r.result.formatted_phone_number)
+        $("#address").text(r.result.formatted_address);
+        for (var i = 0; i < 7; i++){
+            $("#hours" + [i]).text(r.result.opening_hours.weekday_text[i]);
+        };
+
+
+
+    });
+};
 
