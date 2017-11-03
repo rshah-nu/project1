@@ -20,13 +20,12 @@ h1 {
   color: white;
   font-weight: 400;
   letter-spacing: 2px;
-  margin-top: 10px;
+  margin-top: 20px;
 }
 
 .header-sty {
   padding:2px;
   background: url(../images/ChicagoFlag.png) center no-repeat;
-
 }
 
 #clean-italic {
@@ -37,7 +36,7 @@ h1 {
 
 header {
   height: 200px;
-  background-color: #52b0f9;
+  background-color: #ff960c;
 
 }
 
@@ -94,8 +93,9 @@ input[type=search]:not(.browser-default):focus:not([readonly]) + label{
 
 /*info card*/
 .card {
-  background-color: aliceblue;
+  background-color: #f5f5f5;
 }
+
 #name {
   text-transform: uppercase;
 }
@@ -109,15 +109,21 @@ input[type=search]:not(.browser-default):focus:not([readonly]) + label{
   opacity: 50;
 }
 
+#placeDetails {
+  height: 448px;
+}
+
+
 #map {
   height: 400px;
   width: 100%;
  }
 
-#placeDetails {
-  height: 448px;
+#hours0, #hours1, #hours2 , #hours3, #hours4 , #hours5 , #hours6 {
+  color: #015797;
+  font-weight: bold;
+  text-transform: uppercase;
 }
-
 /*footer styles*/
 
 footer {
