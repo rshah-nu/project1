@@ -18,7 +18,7 @@
         <!-- Navbar -->
         <header>
             <div class="nav-header header-sty">
-                <h1 class="center">Clean Eat Chicago</h1>
+                <h1 class="center"> <span id="clean-italic">CLEAN EAT </span>CHICAGO</h1>
             </div>
         </header>
         <!-- Everything inside this container -->
@@ -27,8 +27,8 @@
             <br>
             <!-- Row for search buttons -->
             <div class="row center" id="searchBtns">
-                <a class="btn waves-effect waves-light btn-custom tooltipped" id="restaurantName" data-position="bottom" data-tooltip="Must enter restaurant name">Restaurant Name</a>
-                <a class="btn waves-effect waves-light btn-custom tooltipped" id="cuisineType" data-position="bottom" data-tooltip="Must enter cuisine type">Cuisine Type</a>
+                <a class="btn waves-effect waves-light btn-custom tooltipped" id="restaurantName" data-position="bottom" data-tooltip="Please enter restaurant name">Restaurant Name</a>
+                <a class="btn waves-effect waves-light btn-custom tooltipped" id="cuisineType" data-position="bottom" data-tooltip="Please enter cuisine type">Cuisine Type</a>
                 <br>
             </div>
             <!-- Row for search fields, hard coded -->
@@ -46,7 +46,7 @@
                 </div>
                 <div class="input-field col s6 zip-search-field">
                     <i class="material-icons prefix">search</i>
-                    <input class="icon_prefix" id="zip-search-input" type="number" data-length="5" class="validate" >
+                    <input class="icon_prefix" id="zip-search-input" type="text" data-length="5" class="validate" >
                     <label for="zip-search-input">Zip</label>
                 </div>
             </form>
@@ -73,11 +73,11 @@
                     <div class="card" id="placeDetails">
                         <div class="card-content">
                             <div class="section center-align">
-                                <h4 id="name">Panera Bread</h4>
+                                <h4 id="name"></h4>
                             </div>
                             <div class="divider"></div>
                             <div class="card-tabs">
-                                <ul class="tabs tabs-fixed-width">
+                                <ul class="tabs tabs-fixed-width tab-custom">
                                     <li class="tab"><a class="active" href="#tab1">Basic Information</a></li>
                                     <li class="tab"><a href="#tab2">Hours</a></li>
                                 </ul>
@@ -91,7 +91,7 @@
                                     </ul>
                                 </div>
                                 <div id="tab2">
-                                    <li>Hours:<br> <span id="hours0"></span><br> <span id="hours1"></span><br><span id="hours2"></span><br><span id="hours3"></span><br><span id="hours4"></span><br><span id="hours5"></span> <br><span id="hours6"></span><br></li>
+                                    <li>Hours:<br> <span id="hours0"></span><br> <span id="hours1"></span><br> <span id="hours2"></span><br><span id="hours3"></span><br><span id="hours4"></span><br><span id="hours5"></span> <br><span id="hours6"></span><br></li>
                                 </div>
                             </div>
                         </div>
