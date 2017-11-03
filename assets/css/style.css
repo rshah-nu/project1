@@ -109,12 +109,19 @@ input[type=search]:not(.browser-default):focus:not([readonly]) + label{
   opacity: 50;
 }
 
+#map {
+  height: 400px;
+  width: 100%;
+ }
 
+#placeDetails {
+  height: 448px;
+}
 
+/*footer styles*/
 
 footer {
  /* margin-top: 100px;*/
-
 }
 
 .footer-custom {
@@ -125,15 +132,6 @@ footer {
 
 .page-footer .footer-copyright {
   background-color: #ff960c;
-}
-
-#map {
-  height: 400px;
-  width: 100%;
- }
-
-#placeDetails {
-  height: 448px;
 }
 
 
