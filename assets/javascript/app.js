@@ -188,8 +188,9 @@ $(document).ready(function(){
     };    
     // Function which queries Google PlaceID to retrieve placeID
     function placeID(v){
-        var baseURL = 'https://maps.googleapis.com/maps/api/place/textsearch/json?key=AIzaSyBrsAAIlHYMZXY-Zhcj7Z6ZOjvMM8q5v-0&';
+        var baseURL = 'https://maps.googleapis.com/maps/api/place/textsearch/json?key=AIzaSyDHoRALByDMw9kuV4wjKPK22BqM8AahDgo&';
         var queryURL = 'query=' + restaurantNameGlobal + '&location=' + v[0].location.coordinates[1] + ',' + v[0].location.coordinates[0] + '&radius=50';
+        console.log(baseURL + queryURL);
         var proxyURL = 'https://ghastly-eyeballs-78637.herokuapp.com/';
         var fullURL = proxyURL + baseURL + queryURL;
         $.getJSON(fullURL, function(r){
@@ -203,7 +204,7 @@ $(document).ready(function(){
     };
 
     function reviewsCall(placeID){
-        var baseURL = 'https://maps.googleapis.com/maps/api/place/details/json?key=AIzaSyBrsAAIlHYMZXY-Zhcj7Z6ZOjvMM8q5v-0&';
+        var baseURL = 'https://maps.googleapis.com/maps/api/place/details/json?key=AIzaSyDHoRALByDMw9kuV4wjKPK22BqM8AahDgo&';
         var queryURL = "placeid=" + placeID;
         var proxyURL = 'https://ghastly-eyeballs-78637.herokuapp.com/';
         var fullURL = proxyURL + baseURL + queryURL;
