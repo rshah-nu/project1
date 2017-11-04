@@ -13,6 +13,7 @@ $(document).ready(function(){
 	// Function to toggle input fields based on target click
 	$("#searchBtns").on("click", function(e){
 		if (e.target.id === "restaurantName"){
+
             $(".rest-search-field").show();
             $(".cuisine-search-field").hide();
         } else {
@@ -185,7 +186,6 @@ $(document).ready(function(){
             position: centerMap,
             map: map
         });
-
     };    
     // Function which queries Google PlaceID to retrieve placeID
     function placeID(v){

@@ -16,19 +16,24 @@
     </head>
     <body>
         <!-- Navbar -->
-        <nav>
+        <header>
             <div class="nav-header header-sty">
-                <h1 class="center">Clean Eat Chicago</h1>
+                <h1 class="center"> <span id="clean-italic">CLEAN EAT </span>CHICAGO</h1>
             </div>
-        </nav>
+        </header>
         <!-- Everything inside this container -->
-        <div class="container main">
+        <main class="container">
             <!-- Line breaks for spacing -->
-            <br>          
+            <br>
+            <div class="row">
+                <div class="col s12">
+                    <h2 class="header center hungry">Hungry?</h2>
+                </div>
+            </div>
             <!-- Row for search buttons -->
             <div class="row center" id="searchBtns">
-                <a class="btn waves-effect waves-light btn-custom tooltipped" id="restaurantName" data-position="bottom" data-tooltip="Must enter restaurant name">Restaurant Name</a>
-                <a class="btn waves-effect waves-light btn-custom tooltipped" id="cuisineType" data-position="bottom" data-tooltip="Must enter cuisine type">Cuisine Type</a>
+                <a class="btn waves-effect waves-light btn-custom tooltipped" id="restaurantName" data-position="bottom" data-tooltip="Please enter restaurant name">Restaurant Name</a>
+                <a class="btn waves-effect waves-light btn-custom tooltipped" id="cuisineType" data-position="bottom" data-tooltip="Please enter cuisine type">Cuisine Type</a>
                 <br>
             </div>
             <!-- Row for search fields, hard coded -->
@@ -46,7 +51,7 @@
                 </div>
                 <div class="input-field col s6 zip-search-field">
                     <i class="material-icons prefix">search</i>
-                    <input class="icon_prefix" id="zip-search-input" type="number" data-length="5" class="validate" >
+                    <input class="icon_prefix" id="zip-search-input" type="text" data-length="5" class="validate" >
                     <label for="zip-search-input">Zip</label>
                 </div>
             </form>
@@ -82,12 +87,12 @@
                 <div class="col s6">
                     <div class="card" id="placeDetails">
                         <div class="card-content">
-                            <div class="section center-align">
-                                <h4 id="name">Panera Bread</h4>
+                            <div class="section center-align blue white-text">
+                                <h4 id="name">Panera</h4>
                             </div>
                             <div class="divider"></div>
                             <div class="card-tabs">
-                                <ul class="tabs tabs-fixed-width">
+                                <ul class="tabs tab tabs-fixed-width tab-custom">
                                     <li class="tab"><a class="active" href="#tab1">Basic Information</a></li>
                                     <li class="tab"><a href="#tab2">Hours</a></li>
                                 </ul>
@@ -95,26 +100,26 @@
                             <div class="card-content">
                                 <div id="tab1">
                                     <ul>
-                                        <li>Phone: <span id="phone"></span></li>
-                                        <li>Address: <span id="address"></span></li>
-                                        <li>Likes: <span id="likes"></li>
-                                    </ul> 
+                                        <li><span id="phoneheading">Phone: </span><span id="phone">777-777-7777</span></li>
+                                        <li><span id="addressheading">Address: </span><span id="address">777 Lane</span></li>
+                                        <li><span id="likesheading">Likes: </span><span id="likes">7</li>
+                                    </ul>
                                 </div>
                                 <div id="tab2">
-                                    <li>Hours:<br> <span id="hours0"></span><br> <span id="hours1"></span><br><span id="hours2"></span><br><span id="hours3"></span><br><span id="hours4"></span><br><span id="hours5"></span> <br><span id="hours6"></span><br></li>
+                                    <li><span id="hours0">Monday 1:00am - 12:00pm</span><br> <span id="hours1"></span><br> <span id="hours2"></span><br><span id="hours3"></span><br><span id="hours4"></span><br><span id="hours5"></span> <br><span id="hours6"></span><br></li>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>            
+            </div>
             <!-- Row for Results -->
             <div class="row resultsDiv">
                 <div class="col s12">
                     <ul class="collapsible" data-collapsible="accordion">
                         <li>
                             <div class="collapsible-header">
-                                <i class="material-icons">sentiment_very_satisfied</i>Passed Inspections<span class="new badge green" id="totalPass" data-badge-caption="Total"></span>
+                                <i class="material-icons">sentiment_very_satisfied</i>Passed Inspections<span class="new badge successbadge" id="totalPass" data-badge-caption="Total"></span>
                             </div>
                             <div class="collapsible-body">
                                 <table class="striped">
@@ -133,7 +138,7 @@
                         </li>
                         <li>
                             <div class="collapsible-header">
-                                <i class="material-icons">sentiment_dissatisfied</i>Failed Inspections<span class="new badge red" id="totalFail" data-badge-caption="Total"></span>
+                                <i class="material-icons">sentiment_dissatisfied</i>Failed Inspections<span class="new badge failbadge" id="totalFail" data-badge-caption="Total"></span>
                             </div>
                             <div class="collapsible-body">
                                 <table class="striped">
@@ -159,14 +164,15 @@
                     <ul class="collapsible" data-collapsible="accordian">
                         <li>
                             <div class="collapsible-header">
-                                <i class="material-icons">rate_review</i>Google Reviews<span class="new badge" id="googleRating" data-badge-caption="/ 5 Stars"></span>
+                                <i class="material-icons">rate_review</i>Google Reviews<span class="new badge reviewbadge" id="googleRating" data-badge-caption="/ 5 Stars"></span>
                             </div>
                             <div class="collapsible-body">
                                 <ul class="collection">
                                     <li class="collection-item">
-                                        <span class="title" id="reviewName0"></span>
-                                        <p id="reviewText0"></p>
-                                        <p class="right-align" id="reviewDate0"></p>
+                                        <p><span class="date-text" id="reviewDate0">11/11/2019</span><br><br>
+                                        <span class="title-text" id="reviewName0">Class Act!!!</span>
+                                        <span id="reviewText0">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.</span></p>
+
                                     </li>
                                     <li class="collection-item">
                                         <span class="title" id="reviewName1"></span>
@@ -185,7 +191,7 @@
                 </div>
             </div>
         <!-- End of main container! -->
-        </div>
+        </main>
         <!-- Page Footer -->
         <footer class="page-footer footer-custom">
             <div class="footer-copyright">
@@ -194,7 +200,7 @@
                 </div>
             </div>
         </footer>
-            
+
         <!-- Firebase -->
         <script src="https://www.gstatic.com/firebasejs/4.6.0/firebase.js"></script>
          <!--Import jQuery before materialize.js-->
