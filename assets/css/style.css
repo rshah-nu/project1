@@ -143,6 +143,14 @@ li {
   font-size: 1.2em;
 }
 
+/*inspection styles*/
+th {
+  text-transform: uppercase;
+  padding-right: 10px;
+  color: black !important;
+  font-weight: 300;
+  font-size: 1.2em;
+}
 
 /*footer styles*/
 
