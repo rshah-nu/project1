@@ -59,7 +59,7 @@ header {
 }
 
 .btn-custom:visited {
-  background-color:#52b0f9;
+  background-color:#0099ff;
 }
 
 /* styles the underline when clicked in the input field */
@@ -92,38 +92,58 @@ input[type=search]:not(.browser-default):focus:not([readonly]) + label{
 /*main content results*/
 
 /*info card*/
-.card {
+.tab {
   background-color: #f5f5f5;
 }
 
+.card {
+  background-color: #f5f5f5;
+
+}
 #name {
   text-transform: uppercase;
+  font-size: 1.5em;
 }
 
-.tabs .tab a:hover, .tabs .tab a.active {
-  color: #eb4000;
+.tabs .tab a.active {
+  color: black;
+  background-color: none !important;
+}
+
+.tabs .tab a:hover {
+  color: black;
+  background-color: none !important;
 }
 
 .tabs .tab a {
-  color: #ff7a4a;
-  opacity: 50;
+  color: grey;
+  font-size: 17px;
+  background-color: none !important;
+
+}
+/*changes the underline color in the tabs*/
+.tabs .indicator { background-color: #52b0f9; }
+
+li {
+  list-style-type: none;
 }
 
-#placeDetails {
-  height: 448px;
+.info-custom {
+  padding-top: 0px;
 }
-
 
 #map {
   height: 400px;
   width: 100%;
  }
 
-#hours0, #hours1, #hours2 , #hours3, #hours4 , #hours5 , #hours6 {
-  color: #015797;
-  font-weight: bold;
-  text-transform: uppercase;
+ #addressheading, #likesheading, #phoneheading, #phone, #address, #likes, #hours0, #hours1, #hours2 , #hours3, #hours4 , #hours5 , #hours6 {
+  color: black;
+  font-weight: 300;
+  font-size: 1.2em;
 }
+
+
 /*footer styles*/
 
 footer {
@@ -139,7 +159,6 @@ footer {
 .page-footer .footer-copyright {
   background-color: #ff960c;
 }
-
 
 @media only screen and (max-width: 500px) {
 
