@@ -185,12 +185,13 @@ $(document).ready(function(){
             position: centerMap,
             map: map
         });
-    };
-    
+
+    };    
     // Function which queries Google PlaceID to retrieve placeID
     function placeID(v){
         var baseURL = 'https://maps.googleapis.com/maps/api/place/textsearch/json?key=AIzaSyBrsAAIlHYMZXY-Zhcj7Z6ZOjvMM8q5v-0&';
-        var queryURL = 'query=' + restaurantNameGlobal + v[0].address;
+        var queryURL = 'query=' + restaurantNameGlobal + '&location=' + v[0].location.coordinates[1] + ',' + v[0].location.coordinates[0] + '&radius=50';
+        console.log(baseURL + queryURL);
         var proxyURL = 'https://ghastly-eyeballs-78637.herokuapp.com/';
         var fullURL = proxyURL + baseURL + queryURL;
         $.getJSON(fullURL, function(r){
