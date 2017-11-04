@@ -1,181 +1,226 @@
 $(document).ready(function(){
-    $("#cuisineType").on("click", function(){
-        defaultPage();
-    });
-
+    // Needs to be global for use in google places fxn
+    var restaurantNameGlobal = "";
+    // Modal function needed by Materialize
+    $('.modal').modal();
+    // Prints default page to screen on page load
     function defaultPage(){
         $(".cuisine-search-field").hide();
-        $("#resultsDiv").hide();
-    }
-
+        $(".resultsDiv").hide();
+    };
     defaultPage();
-
-
-    $("#searchBtns").on("click", function(event){
-        // console.log(event.target.id);
-        if (event.target.id === "restaurantName"){
-
+    // Function to toggle input fields based on target click
+    $("#searchBtns").on("click", function(e){
+        if (e.target.id === "restaurantName"){
             $(".rest-search-field").show();
             $(".cuisine-search-field").hide();
-
         } else {
             $(".cuisine-search-field").show();
             $(".rest-search-field").hide();
         }
-
     });
-
-    $("#submitBtn").on("click", function() {
-        // body...'
-        // console.log("I clicked on the submit button");
+    // Function run when the user hits submit
+    $("#submitBtn").on("click", function(){
         var restaurantName = $("#rest-search-input").val();
-        console.log(restaurantName);
+        restaurantNameGlobal = restaurantName;
         var cuisineName = $("#cuisine-search-input").val();
-        console.log(cuisineName);
         var zipName = $("#zip-search-input").val();
-        var isValidZip = /(^\d{5}$)|(^\d{5}-\d{4}$)/.test(zipName);
-        console.log(isValidZip);
-
-        if (!isValidZip) {
-            console.log("Valid zip must be five digits long, stupid!");
-
-        }
-        console.log(zipName);
-        // I
-    $('.modal').modal();
-
+        // Validate Input
+        validateInput(restaurantName, zipName);
     });
+    // Function validates user input and if valid, calls Fxn to run API, else prompts user to retry
+    function validateInput(restaurantName, zipName){
+        if (restaurantName == "" && zipName == ""){
+            Materialize.toast("Please enter a Restaurant Name!", 4000);
+            Materialize.toast("Please enter a valid five digit zip code!", 4000);
+        }
+        else if (restaurantName == ""){
+            Materialize.toast("Please enter a Restaurant Name!", 4000);
+        }
+        else if (zipName == "" || !(/(^\d{5}$)/).test(zipName)){
+            Materialize.toast("Please enter a valid five digit zip code!", 4000);
+        }
+        else{
+            // Empty Search Fields and Results for next search
+            $("#passTableBody").empty();
+            $("failTableBody").empty();
+            $("#rest-search-input").val("");
+            $("#zip-search-input").val("");
+            chicagoCall(restaurantName, zipName);
+        };
+    };
+    // Call City of Chicago Health Data API
+    function chicagoCall(restaurantName, zipName){
+        var baseURL = 'https://data.cityofchicago.org/resource/cwig-ma7x.json';
+        var queryURL= '?$where=inspection_date between "2012-01-01T12:00:00" and "2017-01-14T14:00:00"'
+        + ' and starts_with(dba_name, upper("'
+        + restaurantName
+        + '")) and zip="' + zipName + '"';
+        var finalURL = baseURL + queryURL;
+        $.getJSON(finalURL, function(r){
+            // Check # of restaurants returned
+            lengthCheck(r);
+        });
+    };
+    // This function checks how many restaurants are returned by the City API, if there are multiple, it prompts
+    // the user to select the restaurant they want.
+    function lengthCheck(r){
+        // If JSON object is empty, no restaurants were found
+        if (r.length == 0) {
+            Materialize.toast("No Restaurants by that name were found in that area!", 4000);
+        }
+        // If JSON object is not empty, find out how many unique restaurants are in the response.
+        else{
+            var licenseArray = [];
+            var multiRestaurantArray = [];
+            for (var i = 0; i < r.length; i++){
+                if (!licenseArray.includes(r[i].license_)) {
+                    licenseArray.push(r[i].license_);
+                    multiRestaurantArray.push(
+                        {
+                            license: r[i].license_,
+                            address: r[i].address,
+                            name: r[i].dba_name,
+                            latitude: r[i].latitude,
+                            longitude: r[i].longitude,
+                            zip: r[i].zip
+                        }
+                    );
+                };
+            };
+            if (licenseArray.length == 1) {
+                addResultsToPage(r);
+            }
+            else if (licenseArray.length > 1){
+                $("#multipleLocationsModal").html("");
+                userPickRestaurant(multiRestaurantArray, r);
+            };
+        };
+    };
+    // Function which prints multiple restaurants to the page and allows user to choose
+    function userPickRestaurant(multiRestaurantArray, r){
+        console.log(r);
+        var multipleLocationsModal = $("#multipleLocationsModal");
+        for (var i = 0; i < multiRestaurantArray.length; i++){
+            var link = $("<a>");
+            link.text(multiRestaurantArray[i].address);
+            link.addClass("collection-item multipleResults");
+            link.attr("data-license", multiRestaurantArray[i].license);
+            multipleLocationsModal.append(link);
+            $("#modal1").modal('open');
+        };
+        // On click listener
+        $(".multipleResults").on("click", function(){
+            var licenseSelection = $(this).attr("data-license");
+            var selectedResponse = [];
+            for (var i = 0; i < r.length; i++){
+                if (licenseSelection == r[i].license_){
+                    selectedResponse.push(r[i]);
+                };
+            };
+            $("#modal1").modal('close');
+            addResultsToPage(selectedResponse);
+        });
+    };
+    // Function prints results to page after all validation and checking.
+    function addResultsToPage(r){
+        initMap(r);
+        placeID(r);
+        var pass = 0;
+        var fail = 0;
+        for (var i = 0; i<r.length; i++){
+            var result = r[i].results;
+            switch(result){
+                case "Pass":
+                    pass++
+                    var passTableRow = $("<tr>");
+                    var tableData1 = $("<td>");
+                    var tableData2 = $("<td>");
+                    var tableData3 = $("<td>");
+                    var tableData4 = $('<td>');
+                    tableData1.text(moment(r[i].inspection_date).format("MM-DD-YYYY"));
+                    tableData2.text(r[i].results);
+                    tableData3.text(r[i].inspection_type);
+                    tableData4.text(r[i].violations);
+                    var passTableBody = $("#passTableBody");
+                    passTableRow.append(tableData1, tableData2, tableData3, tableData4);
+                    passTableBody.append(passTableRow);
+                    break;
+                case "Fail":
+                    fail++;
+                    var failTableRow = $("<tr>");
+                    var failTableBody = $("#failTableBody");
+                    var tableData1 = $("<td>");
+                    var tableData2 = $("<td>");
+                    var tableData3 = $("<td>");
+                    var tableData4 = $('<td>');
+                    tableData1.text(moment(r[i].inspection_date).format("MM-DD-YYYY"));
+                    tableData2.text(r[i].results);
+                    tableData3.text(r[i].inspection_type);
+                    tableData4.text(r[i].violations);
+                    failTableRow.append(tableData1, tableData2, tableData3, tableData4);
+                    failTableBody.append(failTableRow);
+                    break;
+                default:
+                    console.log("There has been an error with this restaurant");
+                    break;
+            };
+        };
+        $("#totalPass").text(pass);
+        $("#totalFail").text(fail);
+        $(".resultsDiv").show();
+    };
+    // Function prints map to page
+    function initMap(r){
+        var centerMap = {
+            lat: r[0].location.coordinates[1],
+            lng: r[0].location.coordinates[0]
+        };
+        var map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 15,
+            center: centerMap
+        });
+        var marker = new google.maps.Marker({
+            position: centerMap,
+            map: map
+        });
+    };
+
+    // Function which queries Google PlaceID to retrieve placeID
+    function placeID(v){
+        var baseURL = 'https://maps.googleapis.com/maps/api/place/textsearch/json?key=AIzaSyBrsAAIlHYMZXY-Zhcj7Z6ZOjvMM8q5v-0&';
+        var queryURL = 'query=' + restaurantNameGlobal + v[0].address;
+        var proxyURL = 'https://ghastly-eyeballs-78637.herokuapp.com/';
+        var fullURL = proxyURL + baseURL + queryURL;
+        $.getJSON(fullURL, function(r){
+            if (r.results.length == 0) {
+                console.log("There is an error with the Google PlaceID Fxn, someone tell Ronak!");
+            }
+            else{
+                reviewsCall(r.results[0].place_id);
+            };
+        });
+    };
+
+    function reviewsCall(placeID){
+        var baseURL = 'https://maps.googleapis.com/maps/api/place/details/json?key=AIzaSyBrsAAIlHYMZXY-Zhcj7Z6ZOjvMM8q5v-0&';
+        var queryURL = "placeid=" + placeID;
+        var proxyURL = 'https://ghastly-eyeballs-78637.herokuapp.com/';
+        var fullURL = proxyURL + baseURL + queryURL;
+        $.getJSON(fullURL, function(r){
+            console.log(r);
+            $("#address").text(r.result.formatted_address);
+            $("#phone").text(r.result.formatted_phone_number);
+            $("#googleRating").text(r.result.rating);
+            for (var i = 0; i < r.result.opening_hours.weekday_text.length; i++){
+                $("#hours" + i).text(r.result.opening_hours.weekday_text[i]);
+            };
+            for (var i = 0; i < 3; i++){
+                $("#reviewName" + i).text(r.result.reviews[i].author_name);
+                $("#reviewText" + i).text(r.result.reviews[i].text);
+                $("#reviewDate" + i).text(r.result.reviews[i].relative_time_description);
+            };
+        });
+    };
+// End of Document Ready
 });
-
-    // $("#restaurantName").on("click", function(){
-    //     console.log("restaurantName")
-    //     var divOne = $('<div class="input-field col s6">');
-    //     var restaurantIcon = $('<i class="material-icons prefix">restaurant_menu</i>')
-    //     var restaurantInput = $('<input id="restaurantInput" type="text">');
-    //     var restaurantLabel = $('<label for="restaurantInput">');
-    //     restaurantLabel.text("Restaurant");
-    //     var divTwo = $('<div class="input-field col s6">');
-    //     var zipIcon = $('<i class="material-icons prefix">place</i>');
-    //     var zipInput = $('<input id="zipInput" type="text">');
-    //     var zipLabel = $('<label for="zipInput">');
-    //     zipLabel.text("Zip Code");
-    //     divOne.append(restaurantIcon);
-    //     divOne.append(restaurantInput);
-    //     divOne.append(restaurantLabel);
-    //     divTwo.append(zipIcon);
-    //     divTwo.append(zipInput);
-    //     divTwo.append(zipLabel);
-    //     $("#searchFields").html(divOne);
-    //     $("#searchFields").append(divTwo);
-    // });
-
-    // function defaultPage() {
-    //     var divOne = $('<div class="input-field col s6">');
-    //     var restaurantIcon = $('<i class="material-icons prefix">restaurant</i>')
-    //     var cuisineInput = $('<input id="cuisineInput" type="text">');
-    //     var cuisineLabel = $('<label for="cuisineInput">');
-    //     cuisineLabel.text("Cuisine");
-    //     var divTwo = $('<div class="input-field col s6">');
-    //     var zipIcon = $('<i class="material-icons prefix">place</i>');
-    //     var zipInput = $('<input id="zipInput" type="text">');
-    //     var zipLabel = $('<label for="zipInput">');
-    //     zipLabel.text("Zip Code");
-    //     divOne.append(restaurantIcon);
-    //     divOne.append(cuisineInput);
-    //     divOne.append(cuisineLabel);
-    //     divTwo.append(zipIcon);
-    //     divTwo.append(zipInput);
-    //     divTwo.append(zipLabel);
-    //     $("#searchFields").html(divOne);
-    //     $("#searchFields").append(divTwo);
-    //     $("#resultsDiv").hide();
-    // };
-    // defaultPage();
-
-        // $("#submitBtn").on("click", function(){
-
-        //     console.log("I'm Clicked!");
-        //     var restaurantValue = $("#restaurantInput").val();
-        //     var cuisineInput = $("#cuisineInput").val();
-        //     var zipInput = $("#zipInput").val();
-
-        //     if (restaurantValue == undefined) {
-        //         console.log("Normally would go to Fxn");
-        //         alert("")
-        //         chicagoCall(cuisineInput, zipInput)
-        //     }
-        //     else {
-        //         chicagoCall(cuisineInput, zipInput)
-        //     }
-        // });
-
-        // function chicagoCall(cuisineInput, zipInput){
-        //     var baseURL = 'https://data.cityofchicago.org/resource/cwig-ma7x.json?';
-        //     var queryParam = "$where=inspection_date between '2012-01-10T12:00:00' and '2017-01-14T14:00:00' and starts_with(dba_name, upper('" + cuisineInput + "')) and zip='" + zipInput + "'"
-        //     var fullURL = baseURL + queryParam
-        //     $.getJSON(fullURL, function(results){
-        //         console.log(results);
-        //         console.log(results[0].address);
-        //         var highRisk = 0;
-        //         var mediumRisk = 0;
-        //         var lowRisk = 0;
-        //         for (var index = 0; index < results.length; index++) {
-        //             var riskType = results[index].risk;
-        //             switch (riskType) {
-        //                 case "Risk 1 (High)":
-        //                     highRisk++
-        //                     break;
-        //                 case "Risk 2 (Medium)":
-        //                     mediumRisk++
-        //                     break;
-        //                 case "Risk 3 (Low)":
-        //                     lowRisk++
-        //                     break;
-        //                 default:
-        //                     break;
-        //             };
-        //             var tableRow = $("<tr>");
-        //             var tableData1 = $("<td>");
-        //             var tableData2 = $("<td>");
-        //             var tableData3 = $("<td>");
-        //             var tableData4 = $('<td>');
-        //             tableData1.text(results[index].risk);
-        //             tableData2.text(results[index].address);
-        //             tableData3.text(results[index].results);
-        //             tableData4.text(results[index].violations);
-        //             tableRow.append(tableData1);
-        //             tableRow.append(tableData2);
-        //             tableRow.append(tableData3);
-        //             tableRow.append(tableData4);
-        //             $("#sampleTable").append(tableRow);
-        //         };
-        //         $("#highRisks").text(highRisk);
-        //         $("#mediumRisks").text(mediumRisk);
-        //         $("#lowRisks").text(lowRisk);
-        //         $("#resultsDiv").show();
-        //     });
-        // };
-
-
-
-//  $where=inspection_date between '2015-01-10T12:00:00' and '2017-01-14T14:00:00' and starts_with(dba_name, upper('jimmy johns')) and zip='60660'
-    // $("#zipCode").on("click", function(){
-    //     console.log("zipCode")
-    //     var divTwo = $('<div class="input-field col s4 offset-s4">');
-    //     var zipIcon = $('<i class="material-icons prefix">place</i>');
-    //     var zipInput = $('<input id="zipInput" type="text">');
-    //     var zipLabel = $('<label for="zipInput">');
-    //     zipLabel.text("Zip Code");
-    //     divTwo.append(zipIcon);
-    //     divTwo.append(zipInput);
-    //     divTwo.append(zipLabel);
-    //     $("#searchFields").html(divTwo);
-    // });
-
-    // for (var i = 0; i < temp1.length; i++){
-    //     var cse = temp1[i].results;
-    //     switch (cse) {
-    //         case "Fail":
-    //             console.log("SUPER fail :( ");
-    //                }
-    // }
