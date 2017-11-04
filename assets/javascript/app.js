@@ -45,7 +45,7 @@ $(document).ready(function(){
 		else{
 			// Empty Search Fields and Results for next search
 			$("#passTableBody").empty();
-			$("failTableBody").empty();
+			$("#failTableBody").empty();
 			$("#rest-search-input").val("");
             $("#zip-search-input").val("");
 			chicagoCall(restaurantName, zipName);
@@ -101,7 +101,6 @@ $(document).ready(function(){
 	};
 	// Function which prints multiple restaurants to the page and allows user to choose
     function userPickRestaurant(multiRestaurantArray, r){
-        console.log(r);
         var multipleLocationsModal = $("#multipleLocationsModal");
         for (var i = 0; i < multiRestaurantArray.length; i++){
             var link = $("<a>");
@@ -130,42 +129,42 @@ $(document).ready(function(){
         placeID(r);
         var pass = 0;
         var fail = 0;
+        console.log(r);
         for (var i = 0; i<r.length; i++){
             var result = r[i].results;
-            switch(result){
-                case "Pass":
-                    pass++
-                    var passTableRow = $("<tr>");
-                    var tableData1 = $("<td>");
-                    var tableData2 = $("<td>");
-                    var tableData3 = $("<td>");
-                    var tableData4 = $('<td>');
-                    tableData1.text(moment(r[i].inspection_date).format("MM-DD-YYYY"));
-                    tableData2.text(r[i].results);
-                    tableData3.text(r[i].inspection_type);
-                    tableData4.text(r[i].violations);
-                    var passTableBody = $("#passTableBody");
-                    passTableRow.append(tableData1, tableData2, tableData3, tableData4);
-                    passTableBody.append(passTableRow);
-                    break;
-                case "Fail":
-                    fail++;
-                    var failTableRow = $("<tr>");
-                    var failTableBody = $("#failTableBody");
-                    var tableData1 = $("<td>");
-                    var tableData2 = $("<td>");
-                    var tableData3 = $("<td>");
-                    var tableData4 = $('<td>');
-                    tableData1.text(moment(r[i].inspection_date).format("MM-DD-YYYY"));
-                    tableData2.text(r[i].results);
-                    tableData3.text(r[i].inspection_type);
-                    tableData4.text(r[i].violations);
-                    failTableRow.append(tableData1, tableData2, tableData3, tableData4);
-                    failTableBody.append(failTableRow);
-                    break;
-                default:
-                    console.log("There has been an error with this restaurant");
-                    break;
+            if (result.includes("Pass")){
+                pass++
+                var passTableRow = $("<tr>");
+                var tableData1 = $("<td>");
+                var tableData2 = $("<td>");
+                var tableData3 = $("<td>");
+                var tableData4 = $('<td>');
+                tableData1.text(moment(r[i].inspection_date).format("MM-DD-YYYY"));
+                tableData2.text(r[i].results);
+                tableData3.text(r[i].inspection_type);
+                tableData4.text(r[i].violations);
+                var passTableBody = $("#passTableBody");
+                passTableRow.append(tableData1, tableData2, tableData3, tableData4);
+                passTableBody.append(passTableRow);
+            }
+            else if (result.includes("Fail")){
+                fail++;
+                console.log(fail);
+                var failTableRow = $("<tr>");
+                var failTableBody = $("#failTableBody");
+                var tableData1 = $("<td>");
+                var tableData2 = $("<td>");
+                var tableData3 = $("<td>");
+                var tableData4 = $('<td>');
+                tableData1.text(moment(r[i].inspection_date).format("MM-DD-YYYY"));
+                tableData2.text(r[i].results);
+                tableData3.text(r[i].inspection_type);
+                tableData4.text(r[i].violations);
+                failTableRow.append(tableData1, tableData2, tableData3, tableData4);
+                failTableBody.append(failTableRow);
+            }
+            else {
+                console.log("There has been an error with this restaurant");
             };
         };
         $("#totalPass").text(pass);
@@ -191,7 +190,6 @@ $(document).ready(function(){
     function placeID(v){
         var baseURL = 'https://maps.googleapis.com/maps/api/place/textsearch/json?key=AIzaSyBrsAAIlHYMZXY-Zhcj7Z6ZOjvMM8q5v-0&';
         var queryURL = 'query=' + restaurantNameGlobal + '&location=' + v[0].location.coordinates[1] + ',' + v[0].location.coordinates[0] + '&radius=50';
-        console.log(baseURL + queryURL);
         var proxyURL = 'https://ghastly-eyeballs-78637.herokuapp.com/';
         var fullURL = proxyURL + baseURL + queryURL;
         $.getJSON(fullURL, function(r){
@@ -210,7 +208,6 @@ $(document).ready(function(){
         var proxyURL = 'https://ghastly-eyeballs-78637.herokuapp.com/';
         var fullURL = proxyURL + baseURL + queryURL;
         $.getJSON(fullURL, function(r){
-            console.log(r);
             $("#rName").text(r.result.name);
             $("#address").text(r.result.formatted_address);
             $("#phone").text(r.result.formatted_phone_number);
