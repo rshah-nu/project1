@@ -211,6 +211,7 @@ $(document).ready(function(){
         var fullURL = proxyURL + baseURL + queryURL;
         $.getJSON(fullURL, function(r){
             console.log(r);
+            $("#rName").text(r.result.name);
             $("#address").text(r.result.formatted_address);
             $("#phone").text(r.result.formatted_phone_number);
             $("#googleRating").text(r.result.rating);

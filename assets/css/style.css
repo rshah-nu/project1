@@ -110,7 +110,9 @@ input[type=search]:not(.browser-default):focus:not([readonly]) + label{
 .collapsible-header {
   background-color: #f5f5f5;
 }
-
+.review-date {
+  font-style: italic;
+}
 #name {
   text-transform: uppercase;
   font-size: 1.5em;
