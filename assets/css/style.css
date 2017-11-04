@@ -37,7 +37,6 @@ h1 {
 header {
   height: 200px;
   background-color: #ff960c;
-
 }
 
 .nav-header {
@@ -48,6 +47,14 @@ header {
   font-style: italic;
 }
 
+.hungry {
+  color: #ff960c;
+  font-size: 3em;
+  margin-top: 0px;
+/*  font-style: italic;*/
+  font-weight: 400;
+
+ }
 /*searches and buttons*/
 
 .btn-custom {
@@ -98,8 +105,12 @@ input[type=search]:not(.browser-default):focus:not([readonly]) + label{
 
 .card {
   background-color: #f5f5f5;
-
 }
+
+.collapsible-header {
+  background-color: #f5f5f5;
+}
+
 #name {
   text-transform: uppercase;
   font-size: 1.5em;
@@ -143,6 +154,43 @@ li {
   font-size: 1.2em;
 }
 
+/*inspection styles*/
+th {
+  text-transform: uppercase;
+  padding-right: 10px;
+  color: black !important;
+  font-weight: 300;
+  font-size: 1.2em;
+}
+
+span.successbadge {
+  background-color: #0099ff !important;
+}
+
+
+span.failbadge {
+  background-color: #eb4000 !important;
+}
+
+/*review formating*/
+
+span.reviewbadge {
+  background-color: grey !important;
+}
+
+
+
+.date-text {
+  font-weight: 500;
+
+}
+
+.title-text {
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+
 
 /*footer styles*/
 
@@ -160,6 +208,27 @@ footer {
   background-color: #ff960c;
 }
 
-@media only screen and (max-width: 500px) {
+@media only screen and (max-width: 480px) {
+
+  header {
+    height: 100px;
+  }
+
+  h1 {
+    font-size: 3em;
+    margin-left: 7px;
+    margin-right: 7px;
+  }
+  .header-sty {
+    background: none;
+  }
+
+}
+
+@media only screen and (max-width: 450px) {
+
+  header {
+      height: 150px;
+    }
 
 }
