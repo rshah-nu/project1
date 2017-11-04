@@ -27,7 +27,7 @@
             <br>
             <div class="row">
                 <div class="col s12">
-                    <h2 class="header center hungry">Hungry?</h2>
+                    <h1 class="header center hungry">Hungry?</h1>
                 </div>
             </div>
             <!-- Row for search buttons -->
@@ -64,6 +64,14 @@
                     </a>
                 </div>
             </div>
+            <!-- Modal for multiple results found -->
+            <div id="modal1" class="modal">
+                <div class="modal-content">
+                    <div class="collection" id="multipleLocationsModal">
+                        
+                      </div>
+                </div>
+            </div>
             <!-- Row for Map and restaurant Details -->
             <div class="row resultsDiv">
                 <div class="col s6">
@@ -78,7 +86,7 @@
                     <div class="card" id="placeDetails">
                         <div class="card-content">
                             <div class="section center-align blue white-text">
-                                <h4 id="name">Panera</h4>
+                                <h4 id="rName"></h4>
                             </div>
                             <div class="divider"></div>
                             <div class="card-tabs">
@@ -154,25 +162,24 @@
                     <ul class="collapsible" data-collapsible="accordian">
                         <li>
                             <div class="collapsible-header">
-                                <i class="material-icons">rate_review</i>Google Reviews<span class="new badge reviewbadge" id="googleRating" data-badge-caption="/ 5 Stars"></span>
+                                <i class="material-icons">rate_review</i>Google Reviews<span class="new badge green darken-2" id="googleRating" data-badge-caption="/ 5 Stars"></span>
                             </div>
                             <div class="collapsible-body">
                                 <ul class="collection">
                                     <li class="collection-item">
-                                        <p><span class="date-text" id="reviewDate0">11/11/2019</span><br><br>
-                                        <span class="title-text" id="reviewName0">Class Act!!!</span>
-                                        <span id="reviewText0">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.</span></p>
-
+                                        <span class="title" id="reviewName0"></span>
+                                        <p id="reviewText0"></p>
+                                        <p class="review-date right-align" id="reviewDate0"></p>
                                     </li>
                                     <li class="collection-item">
                                         <span class="title" id="reviewName1"></span>
                                         <p id="reviewText1"></p>
-                                        <p class="right-align" id="reviewDate1"></p>
+                                        <p class="right-align review-date" id="reviewDate1"></p>
                                     </li>
                                     <li class="collection-item">
                                         <span class="title" id="reviewName2"></span>
                                         <p id="reviewText2"></p>
-                                        <p class="right-align" id="reviewDate2"></p>
+                                        <p class="right-align review-date" id="reviewDate2"></p>
                                     </li>
                                 </ul>
                             </div>
@@ -193,8 +200,8 @@
 
         <!-- Firebase -->
         <script src="https://www.gstatic.com/firebasejs/4.6.0/firebase.js"></script>
-        <!--Import jQuery before materialize.js-->
-        <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+         <!--Import jQuery before materialize.js-->
+         <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
         <!-- Compiled and minified JavaScript -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
         <!-- Moment.js -->
