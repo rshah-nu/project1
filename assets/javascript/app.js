@@ -141,6 +141,7 @@ function reviews(placeID){
     console.log(fullURL);
     $.getJSON(fullURL, function(r){
         console.log(r);
+        $("#name").text(r.result.name);
         $("#address").text(r.result.formatted_address);
         $("#phone").text(r.result.formatted_phone_number);
         $("#googleRating").text(r.result.rating);
